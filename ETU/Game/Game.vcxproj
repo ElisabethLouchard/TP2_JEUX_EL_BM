@@ -163,8 +163,10 @@
     <ClInclude Include="CyclicAnimation.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameContentManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="InputBasedAnimation.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="SceneResult.h" />
@@ -186,8 +188,10 @@
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="CyclicAnimation.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameContentManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="InputBasedAnimation.cpp" />
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="LinearAnimation.cpp" />

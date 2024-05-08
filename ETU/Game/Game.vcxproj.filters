@@ -97,6 +97,12 @@
     <ClInclude Include="ContentManager.h">
       <Filter>ContentManager</Filter>
     </ClInclude>
+    <ClInclude Include="GameContentManager.h">
+      <Filter>ContentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>GenericFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Publisher.cpp">
@@ -146,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="TitleContentManager.cpp">
       <Filter>ContentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameContentManager.cpp">
+      <Filter>ContentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>GenericFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

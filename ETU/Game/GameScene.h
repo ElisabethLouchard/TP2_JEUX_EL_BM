@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
-#include "ContentManager.h"
+#include "GameContentManager.h"
+#include "Hud.h"
 class GameScene :
     public Scene
 {
@@ -14,8 +15,10 @@ public:
     virtual bool uninit() override;
     virtual bool handleEvents(sf::RenderWindow& window) override;
 private:
-    sf::Texture menuImageTexture;
-    sf::Sprite menuImage;
+    Hud hud;
+    GameContentManager gameContentManager;
+    sf::Texture gameBackgroundTexture;
+    sf::Sprite gameBackground;
     bool hasTransition = false;
 };
 

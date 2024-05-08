@@ -28,24 +28,19 @@ SceneType GameScene::update()
 
 void GameScene::draw(sf::RenderWindow& window) const
 {
-    window.draw(menuImage);
+    window.draw(gameBackground);
 }
 
 bool GameScene::init()
 {
-    /*if (titleContentManager.loadContent() == false)
+    if (gameContentManager.loadContent() == false)
     {
         return false;
-    }*/
-    menuImage.setTexture(menuImageTexture);
-    menuImage.setOrigin(menuImage.getTexture()->getSize().x / 2.0f, menuImage.getTexture()->getSize().y / 2.0f);
-    menuImage.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 2.0f);
-    /*instructions.setFont(titleContentManager.getFont());
-    instructions.setString("Press any key to start");
-    instructions.setCharacterSize(30);
-    instructions.setPosition(Game::GAME_WIDTH / 2.0f - instructions.getGlobalBounds().width / 2.0f,
-        Game::GAME_HEIGHT / 2 + (menuImage.getGlobalBounds().height / 2.0f) + 20);*/
-    //gameMusic.setBuffer(titleContentManager.getGameMusicSoundBuffer());
+    }
+    gameBackground.setTexture(gameContentManager.getBackgroundTexture());
+    gameBackground.setOrigin(gameBackground.getTexture()->getSize().x / 2.0f, gameBackground.getTexture()->getSize().y / 2.0f);
+    gameBackground.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 2.0f);
+    hud.initialize(gameContentManager);
     return true;
 }
 
