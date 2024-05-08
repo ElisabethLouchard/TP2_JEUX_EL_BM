@@ -16,5 +16,6 @@ public:
 private:
   sf::Texture menuImageTexture;
   sf::Sprite menuImage;
+  bool hasTransition = false;
 };
 

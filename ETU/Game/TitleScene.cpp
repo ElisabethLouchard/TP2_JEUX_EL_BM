@@ -15,7 +15,15 @@ TitleScene::~TitleScene()
 }
 SceneType TitleScene::update()
 {
-  return getSceneType();
+    SceneType retval = getSceneType();
+
+    if (hasTransition)
+    {
+        pause();
+        return SceneType::GAME_SCENE;
+    }
+
+    return retval;
 }
 
 void TitleScene::draw(sf::RenderWindow& window) const
@@ -46,20 +54,14 @@ bool TitleScene::handleEvents(sf::RenderWindow& window)
   while (window.pollEvent(event))
   {
     //x sur la fenêtre
-    if (event.type == sf::Event::Closed)
+    if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
     {
       window.close();
       retval = true;
     }
     if (event.type == sf::Event::KeyPressed) {
         
-        //hasTransition = true;
-        //result.titleSceneResult.isLongGame = false;
-        if (event.key.code == sf::Keyboard::Escape)
-        {
-            //hasTransition = true;
-            //result.titleSceneResult.isLongGame = true;
-        }
+        hasTransition = true;
     }
   }
   return retval;
