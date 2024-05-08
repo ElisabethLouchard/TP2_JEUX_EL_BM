@@ -20,6 +20,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="ContentManager">
+      <UniqueIdentifier>{ec3ddaf1-cfcd-4e13-ac3f-e6e736cf58bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -88,6 +91,12 @@
     <ClInclude Include="ScoreScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="TitleContentManager.h">
+      <Filter>ContentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentManager.h">
+      <Filter>ContentManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Publisher.cpp">
@@ -134,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="ScoreScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleContentManager.cpp">
+      <Filter>ContentManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

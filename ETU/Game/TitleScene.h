@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "ContentManager.h"
+#include "TitleContentManager.h"
 class TitleScene :
     public Scene
 {
@@ -14,8 +14,10 @@ public:
   virtual bool uninit() override;
   virtual bool handleEvents(sf::RenderWindow& window) override;
 private:
-  sf::Texture menuImageTexture;
+  TitleContentManager titleContentManager;
   sf::Sprite menuImage;
+  sf::Text instructions;
+  sf::Sound gameMusic;
   bool hasTransition = false;
 };
 

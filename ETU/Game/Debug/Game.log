@@ -1,18 +1,4 @@
-﻿  stdafx.cpp
-  AnimatedGameObject.cpp
-  Animation.cpp
-  AnimationFrame.cpp
-  CyclicAnimation.cpp
-  game.cpp
-C:\Programmation_de_jeu\Tp2\ETU\Game\game.cpp(149,3): warning C4065: l'instruction switch contient 'default' mais aucune étiquette 'case'
-  GameObject.cpp
-  InputBasedAnimation.cpp
-  Inputs.cpp
-  LinearAnimation.cpp
-  Publisher.cpp
-  Scene.cpp
-  TitleScene.cpp
-  Génération de code en cours...
+﻿  TitleScene.cpp
   Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg
