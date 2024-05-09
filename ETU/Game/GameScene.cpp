@@ -29,6 +29,7 @@ SceneType GameScene::update()
 void GameScene::draw(sf::RenderWindow& window) const
 {
     window.draw(gameBackground);
+    hud.draw(window);
 }
 
 bool GameScene::init()

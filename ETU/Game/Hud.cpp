@@ -17,15 +17,15 @@ void Hud::initialize(const GameContentManager& gameContentManager)
 
 	const sf::Font& font = gameContentManager.getFont();
 	scoreText.setFont(font);
-	scoreText.setCharacterSize(40);
+	scoreText.setCharacterSize(15);
 	scoreText.setOutlineColor(sf::Color::White);
 	scoreText.setString(NB_POINTS + std::to_string(nbOfPoints));
-	scoreText.setPosition(scoreText.getLocalBounds().width / 2.0f, scoreText.getLocalBounds().height / 2.0f);
+	scoreText.setPosition(scoreText.getLocalBounds().width / 4.0f, Game::GAME_HEIGHT - (scoreText.getLocalBounds().height*2));
 
 	nbOfLivesText.setFont(font);
-	nbOfLivesText.setCharacterSize(40);
+	nbOfLivesText.setCharacterSize(15);
 	nbOfLivesText.setOutlineColor(sf::Color::White);
-	nbOfLivesText.setPosition(Game::GAME_WIDTH - scoreText.getLocalBounds().width - scoreText.getLocalBounds().width / 4, scoreText.getLocalBounds().height / 2);
+	nbOfLivesText.setPosition(Game::GAME_WIDTH - scoreText.getLocalBounds().width, Game::GAME_HEIGHT - (scoreText.getLocalBounds().height*2));
 	nbOfLivesText.setString(NB_LIVES + std::to_string(nbOfLives));
 }
 
