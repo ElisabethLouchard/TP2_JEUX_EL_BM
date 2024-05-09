@@ -43,3 +43,12 @@ bool AnimatedGameObject::init(const ContentManager& contentManager)
   this->contentManager = const_cast<ContentManager*>(&contentManager);
   return true;
 }
+
+void AnimatedGameObject::activate()
+{
+    for (auto const& anim : animations)
+    {
+        anim.second->reset();
+    }
+    GameObject::activate();
+}
