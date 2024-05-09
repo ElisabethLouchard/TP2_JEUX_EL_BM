@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "Inputs.h"
+#include "Player.h"
 #include "GameContentManager.h"
 #include "Hud.h"
 class GameScene :
@@ -15,6 +17,8 @@ public:
     virtual bool uninit() override;
     virtual bool handleEvents(sf::RenderWindow& window) override;
 private:
+    Inputs inputs;
+    Player player;
     Hud hud;
     GameContentManager gameContentManager;
     sf::Texture gameBackgroundTexture;

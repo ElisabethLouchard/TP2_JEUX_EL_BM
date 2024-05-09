@@ -1,5 +1,4 @@
-﻿  stdafx.cpp
-  AnimatedGameObject.cpp
+﻿  AnimatedGameObject.cpp
   Animation.cpp
   AnimationFrame.cpp
   CyclicAnimation.cpp

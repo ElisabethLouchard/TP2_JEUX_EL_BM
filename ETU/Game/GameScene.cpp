@@ -16,7 +16,7 @@ GameScene::~GameScene()
 SceneType GameScene::update()
 {
     SceneType retval = getSceneType();
-
+    player.update(1.0f / (float)Game::FRAME_RATE, inputs);
     if (hasTransition)
     {
         pause();
@@ -33,6 +33,7 @@ void GameScene::draw(sf::RenderWindow& window) const
 
 bool GameScene::init()
 {
+    inputs.reset();
     if (gameContentManager.loadContent() == false)
     {
         return false;
@@ -52,6 +53,7 @@ bool GameScene::uninit()
 bool GameScene::handleEvents(sf::RenderWindow& window)
 {
     bool retval = false;
+    inputs.reset();
     sf::Event event;
     while (window.pollEvent(event))
     {
@@ -61,11 +63,11 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
             window.close();
             retval = true;
         }
-        if (event.type == sf::Event::KeyPressed) {
-
-            hasTransition = true;
-        }
     }
+    inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) ? 3.0f : 0.0f;
+    inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) ? -3.0f : 0.0f;
+    inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ? 3.0f : 0.0f;
+    inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) ? -3.0f : 0.0f;
     return retval;
 
 }
