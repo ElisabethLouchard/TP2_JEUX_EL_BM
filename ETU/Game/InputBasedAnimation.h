@@ -1,6 +1,3 @@
-// ppoulin
-// Exercice07
-
 #pragma once
 #include "Animation.h"
 class InputBasedAnimation :
@@ -10,6 +7,7 @@ public:
 
   virtual void update(float deltaT, const Inputs& inputs) override;
   virtual unsigned int getNextFrame() const override;
+  virtual bool init(const ContentManager& contentManager) = 0;
   virtual float getPercentage() const override;
 protected:
   InputBasedAnimation(sf::Sprite& s);

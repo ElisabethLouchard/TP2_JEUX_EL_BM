@@ -23,6 +23,9 @@
     <Filter Include="ContentManager">
       <UniqueIdentifier>{ec3ddaf1-cfcd-4e13-ac3f-e6e736cf58bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animations\Ship">
+      <UniqueIdentifier>{8dad3b35-c089-4181-84be-f6f0f0bf8583}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -103,6 +106,12 @@
     <ClInclude Include="Hud.h">
       <Filter>GenericFiles</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipAnimation.h">
+      <Filter>Animations\Ship</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Publisher.cpp">
@@ -158,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="Hud.cpp">
       <Filter>GenericFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipAnimation.cpp">
+      <Filter>Animations\Ship</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

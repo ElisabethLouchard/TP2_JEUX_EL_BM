@@ -18,12 +18,19 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
+	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.png"))
+		return false;
 	return true;
 }
 
 const sf::Texture& GameContentManager::getBackgroundTexture() const
 {
 	return gameBackgroundTexture;
+}
+
+const sf::Texture& GameContentManager::getShipAnimationTexture() const
+{
+	return shipAnimationTexture;
 }
 
 const sf::Font& GameContentManager::getFont() const
