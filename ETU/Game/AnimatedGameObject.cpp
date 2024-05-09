@@ -34,7 +34,6 @@ bool AnimatedGameObject::update(float deltaT, const Inputs& inputs)
   if(false == retval)
     animations[currentState]->update(deltaT, inputs);
 
-    
   return retval;
 }
 
