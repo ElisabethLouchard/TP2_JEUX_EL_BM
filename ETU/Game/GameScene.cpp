@@ -69,6 +69,7 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
     inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) ? -3.0f : 0.0f;
     inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ? 3.0f : 0.0f;
     inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) ? -3.0f : 0.0f;
+    inputs.fireBullet = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
     return retval;
 
 }
