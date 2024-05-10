@@ -4,10 +4,15 @@
 #include "Player.h"
 #include "GameContentManager.h"
 #include "Hud.h"
+#include "Bullet.h"
+#include <list>
+
 class GameScene :
     public Scene
 {
 public:
+    static const float TIME_BETWEEN_FIRE;
+
     // Héritées via Scene
     GameScene();
     ~GameScene();
@@ -20,9 +25,12 @@ private:
     Inputs inputs;
     Player player;
     Hud hud;
+    void fireBullet(const sf::Vector2f& position);
     GameContentManager gameContentManager;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
     bool hasTransition = false;
+    std::list<Bullet> bullets;
+    float timeSinceLastFire;
 };
 
