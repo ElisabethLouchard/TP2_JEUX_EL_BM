@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
-
 #include "game.h"
+#include "GameContentManager.h"
 
 GameScene::GameScene()
     : Scene(SceneType::GAME_SCENE)
@@ -29,6 +29,7 @@ SceneType GameScene::update()
 void GameScene::draw(sf::RenderWindow& window) const
 {
     window.draw(gameBackground);
+    player.draw(window);
 }
 
 bool GameScene::init()
@@ -42,7 +43,7 @@ bool GameScene::init()
     gameBackground.setOrigin(gameBackground.getTexture()->getSize().x / 2.0f, gameBackground.getTexture()->getSize().y / 2.0f);
     gameBackground.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 2.0f);
     hud.initialize(gameContentManager);
-    return true;
+    return player.init(gameContentManager);
 }
 
 bool GameScene::uninit()

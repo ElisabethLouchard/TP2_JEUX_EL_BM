@@ -18,7 +18,7 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
-	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.png"))
+	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.bmp"))
 		return false;
 	return true;
 }
