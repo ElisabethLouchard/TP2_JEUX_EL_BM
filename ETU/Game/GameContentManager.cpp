@@ -18,6 +18,11 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
+	if (!enemyTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - Bosses.bmp"))
+	{
+		return false;
+	}
+
 	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.png"))
 		return false;
 	return true;
@@ -41,6 +46,11 @@ const sf::Font& GameContentManager::getFont() const
 const sf::SoundBuffer& GameContentManager::getGameMusicSoundBuffer() const
 {
 	return gameMusicSoundBuffer;
+}
+
+const sf::Texture& GameContentManager::getEnemyTexture() const
+{
+	return enemyTexture;
 }
 
 GameContentManager::GameContentManager()
