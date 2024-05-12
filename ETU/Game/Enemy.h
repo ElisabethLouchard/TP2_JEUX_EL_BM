@@ -1,6 +1,6 @@
 #pragma once
 #include "AnimatedGameObject.h"
-//#include "LargeEnemyExplosionAnimation.h"
+#include "EnemyExplosionAnimation.h"
 class Enemy :
 	public AnimatedGameObject
 {

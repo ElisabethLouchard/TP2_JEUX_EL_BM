@@ -1,22 +1,19 @@
-﻿  AnimatedGameObject.cpp
-  Animation.cpp
-  AnimationFrame.cpp
-  CyclicAnimation.cpp
-  game.cpp
-  GameContentManager.cpp
-  GameObject.cpp
-  GameScene.cpp
-  Hud.cpp
-  InputBasedAnimation.cpp
-  Inputs.cpp
-  LinearAnimation.cpp
-  Player.cpp
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(18,5): error C2065: 'addAnimation' : identificateur non déclaré
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(18,31): error C2275: « ShipAnimation » : expression attendue au lieu d’un type
-  Publisher.cpp
-  Scene.cpp
-  ScoreScene.cpp
-  ShipAnimation.cpp
-  TitleContentManager.cpp
-  TitleScene.cpp
-  Génération de code en cours...
+﻿  GameContentManager.cpp
+  Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\bomb.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\bomb.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\bossSpawning.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\bossSpawning.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\enemyGun.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\enemyGun.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\enemyKilled.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\enemyKilled.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\gunBonus.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\gunBonus.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\healthBonus.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\healthBonus.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\iceball.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\iceball.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\info.txt -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\info.txt
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\playerGun.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\playerGun.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\SpaceBackground.png -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\SpaceBackground.png
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Title\Title.png -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Title\Title.png
+  16 fichier(s) copiÚ(s)

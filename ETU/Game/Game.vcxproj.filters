@@ -112,6 +112,9 @@
     <ClInclude Include="ShipAnimation.h">
       <Filter>Animations\Ship</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Publisher.cpp">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="ShipAnimation.cpp">
       <Filter>Animations\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

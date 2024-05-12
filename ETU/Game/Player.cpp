@@ -15,7 +15,7 @@ bool Player::init(const ContentManager& contentManager)
     setPosition(sf::Vector2f(Game::GAME_WIDTH * 0.5f, 100.0f));
 
     currentState = State::SHIP;
-    addAnimation<State::SHIP, ShipAnimation>(contentManager);
+    //addAnimation<State::SHIP, ShipAnimation>(contentManager);
 
     return AnimatedGameObject::init(contentManager);
 }

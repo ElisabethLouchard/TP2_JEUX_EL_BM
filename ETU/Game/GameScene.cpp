@@ -17,12 +17,18 @@ SceneType GameScene::update()
 {
     SceneType retval = getSceneType();
     player.update(1.0f / (float)Game::FRAME_RATE, inputs);
+    
+    for (Enemy& e : enemies)
+        if (e.update(1.0f / (float)Game::FRAME_RATE, inputs))
+            e.deactivate();
+    
     if (hasTransition)
     {
         pause();
         return SceneType::SCORE_SCENE;
     }
 
+    enemies.remove_if([](const GameObject& b) {return !b.isActive(); });
     return retval;
 }
 
@@ -42,6 +48,15 @@ bool GameScene::init()
     gameBackground.setOrigin(gameBackground.getTexture()->getSize().x / 2.0f, gameBackground.getTexture()->getSize().y / 2.0f);
     gameBackground.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 2.0f);
     hud.initialize(gameContentManager);
+
+    for (int i = 0; i < 10; i++)
+    {
+        Enemy enemy;
+        enemy.init(gameContentManager);
+        enemy.setPosition(sf::Vector2f((float)Game::GAME_WIDTH + 50.0f * (float)(rand() % 100), i * (float)Game::GAME_HEIGHT / 10.0f));
+        enemy.activate();
+        enemies.push_back(enemy);
+    }
     return true;
 }
 

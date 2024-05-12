@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Inputs.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "GameContentManager.h"
 #include "Hud.h"
 class GameScene :
@@ -21,6 +22,7 @@ private:
     Player player;
     Hud hud;
     GameContentManager gameContentManager;
+    std::list<Enemy> enemies;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
     bool hasTransition = false;
