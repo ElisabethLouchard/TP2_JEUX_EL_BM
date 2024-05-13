@@ -75,7 +75,6 @@ bool GameScene::init()
     {
         Enemy enemy;
         enemy.init(gameContentManager);
-        //enemy.setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)i * (float)Game::GAME_HEIGHT / 10.0f));
         enemy.setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)(rand() % -1000)));
         enemy.activate();
         enemies.push_back(enemy);

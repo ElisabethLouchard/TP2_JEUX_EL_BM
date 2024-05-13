@@ -7,6 +7,10 @@ bool GameContentManager::loadContent()
 	{
 		return false;
 	}
+	else
+	{
+		gameBackgroundTexture.setRepeated(true);
+	}
 
 	if (!font.loadFromFile("Assets\\Fonts\\Level01\\emulogic.ttf"))
 	{
