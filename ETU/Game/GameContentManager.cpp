@@ -13,12 +13,12 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
-	if (!gameMusicSoundBuffer.loadFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
+	if (!enemyTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - Bosses.bmp"))
 	{
 		return false;
 	}
 
-	if (!enemyTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - Bosses.bmp"))
+	if (!gameMusicSoundBuffer.loadFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
 	{
 		return false;
 	}

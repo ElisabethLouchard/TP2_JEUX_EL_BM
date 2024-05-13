@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimatedGameObject.h"
 #include "EnemyExplosionAnimation.h"
+#include "EnemyIdleAnimation.h"
 class Enemy :
 	public AnimatedGameObject
 {
@@ -15,6 +16,5 @@ private:
 	bool isExploding = false;
 	sf::Clock explosionTimer;
 	sf::Clock respawnTimer;
-	float respawnDelay = 3.0f;
 };
 

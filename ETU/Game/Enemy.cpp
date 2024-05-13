@@ -24,10 +24,9 @@ Enemy::Enemy(const Enemy& src)
 bool Enemy::init(const ContentManager& contentManager)
 {
     isDead = false;
-    setPosition(sf::Vector2f(0.0f, Game::GAME_HEIGHT * 0.5f));
-
 
     currentState = State::STANDARD_ENEMY;
+    addAnimation<State::STANDARD_ENEMY,EnemyIdleAnimation>(contentManager);
     addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
     return AnimatedGameObject::init(contentManager);
@@ -35,7 +34,20 @@ bool Enemy::init(const ContentManager& contentManager)
 
 bool Enemy::update(float deltaT, const Inputs& inputs)
 {
-    move(sf::Vector2f(-5, 0));
+    if (isDead)
+        if (!isExploding) {
+            isExploding = true;
+            explosionTimer.restart();
+        }
+
+    if (isExploding && explosionTimer.getElapsedTime().asSeconds() >= 1.0f) {
+        respawnTimer.restart();
+        return true;
+    }
+    move(sf::Vector2f(0, 5));
+
+    if (getGlobalBounds().top < -getGlobalBounds().height * 0.5f)
+        setPosition(sf::Vector2f(getPosition().x, 0.0f));
 
     return AnimatedGameObject::update(deltaT, inputs);
 }

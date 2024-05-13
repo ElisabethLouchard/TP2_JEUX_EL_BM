@@ -34,7 +34,6 @@ bool AnimatedGameObject::update(float deltaT, const Inputs& inputs)
   if(false == retval)
     animations[currentState]->update(deltaT, inputs);
 
-    
   return retval;
 }
 
@@ -42,4 +41,13 @@ bool AnimatedGameObject::init(const ContentManager& contentManager)
 {
   this->contentManager = const_cast<ContentManager*>(&contentManager);
   return true;
+}
+
+void AnimatedGameObject::activate()
+{
+    for (auto const& anim : animations)
+    {
+        anim.second->reset();
+    }
+    GameObject::activate();
 }
