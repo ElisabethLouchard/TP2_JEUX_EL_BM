@@ -39,21 +39,6 @@ SceneType GameScene::update()
         fireBullet(player.getPosition());
     }
 
-   /* timeSinceLastSpawn += 1.0f / (float)Game::FRAME_RATE;
-
-    if (timeSinceLastSpawn >= spawnInterval)
-    {
-        for (Enemy& e : enemies)
-        {
-            if (!e.isActive())
-            {
-                e.activate();
-                timeSinceLastSpawn = 0.0f; 
-                break;
-            }
-        }
-    }*/
-
     bullets.remove_if([](const GameObject& b) {return !b.isActive(); });
     enemies.remove_if([](const GameObject& b) {return !b.isActive(); });
     timeSinceLastFire += 1.0f / (float)Game::FRAME_RATE;
@@ -90,8 +75,8 @@ bool GameScene::init()
     {
         Enemy enemy;
         enemy.init(gameContentManager);
-        float positionEnemy = (float)(rand() % Game::GAME_WIDTH);
-        enemy.setPosition(sf::Vector2f(positionEnemy, 0.0f));
+        //enemy.setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)i * (float)Game::GAME_HEIGHT / 10.0f));
+        enemy.setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)(rand() % -1000)));
         enemy.activate();
         enemies.push_back(enemy);
     }

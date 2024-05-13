@@ -46,7 +46,7 @@ bool Enemy::update(float deltaT, const Inputs& inputs)
     }
     move(sf::Vector2f(0, 5));
 
-    if (getGlobalBounds().top < -getGlobalBounds().height * 0.5f)
+    if (getPosition().y > Game::GAME_HEIGHT)
         setPosition(sf::Vector2f(getPosition().x, 0.0f));
 
     return AnimatedGameObject::update(deltaT, inputs);
