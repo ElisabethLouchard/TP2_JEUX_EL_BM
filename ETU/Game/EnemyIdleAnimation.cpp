@@ -25,3 +25,4 @@ bool EnemyIdleAnimation::init(const ContentManager& contentManager)
 	frames.push_back(AnimationFrame(texture, sf::IntRect(612, 917, 65, 96)));
     return true;
 }
+

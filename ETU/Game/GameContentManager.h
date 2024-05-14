@@ -9,6 +9,7 @@ public:
 	const sf::Texture& getShipAnimationTexture() const;
 	const sf::Font& getFont() const;
 	const sf::SoundBuffer& getGameMusicSoundBuffer() const;
+	const sf::SoundBuffer& getEnemyKilledSoundBuffer() const;
 	const sf::Texture& getEnemyTexture() const;
 
 private:
@@ -18,5 +19,6 @@ private:
 	sf::Sprite gameBackground;
 	sf::Font font;
 	sf::SoundBuffer gameMusicSoundBuffer;
+	sf::SoundBuffer enemyKilledSoundBuffer;
 };
 

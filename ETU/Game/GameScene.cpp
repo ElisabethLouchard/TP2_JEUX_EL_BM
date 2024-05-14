@@ -39,6 +39,26 @@ SceneType GameScene::update()
         fireBullet(player.getPosition());
     }
 
+    for (Bullet& b : bullets)
+    {
+        for (Enemy& e : enemies)
+        {
+            if (b.collidesWith(e))
+            {
+                b.deactivate();
+                e.onHit();
+            }
+        }
+    }
+
+    for (Enemy& e : enemies)
+    {
+        if (player.collidesWith(e))
+        {
+            e.onDying();
+        }
+    }
+
     bullets.remove_if([](const GameObject& b) {return !b.isActive(); });
     enemies.remove_if([](const GameObject& b) {return !b.isActive(); });
     timeSinceLastFire += 1.0f / (float)Game::FRAME_RATE;
@@ -75,9 +95,8 @@ bool GameScene::init()
     {
         Enemy enemy;
         enemy.init(gameContentManager);
-        enemy.setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)(rand() % -1000)));
-        enemy.activate();
         enemies.push_back(enemy);
+        enemy.loadEnemySpeaks(gameContentManager.getEnemyKilledSoundBuffer());
     }
     return player.init(gameContentManager);
 }

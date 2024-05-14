@@ -27,6 +27,11 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
+	if (!enemyKilledSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\enemyKilled.wav"))
+	{
+		return false;
+	}
+
 	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.bmp"))
 		return false;
 	return true;
@@ -50,6 +55,11 @@ const sf::Font& GameContentManager::getFont() const
 const sf::SoundBuffer& GameContentManager::getGameMusicSoundBuffer() const
 {
 	return gameMusicSoundBuffer;
+}
+
+const sf::SoundBuffer& GameContentManager::getEnemyKilledSoundBuffer() const
+{
+	return enemyKilledSoundBuffer;
 }
 
 const sf::Texture& GameContentManager::getEnemyTexture() const
