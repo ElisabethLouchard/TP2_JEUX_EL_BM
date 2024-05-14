@@ -12,13 +12,13 @@ public:
 	bool update(float deltaT, const Inputs& inputs) override;
 	void onHit();
 	void onDying();
-	void loadEnemySpeaks(const sf::SoundBuffer& soundbuffer);
+	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
 private:
 	void speak();
 	bool isDead;
 	bool isExploding = false;
 	int nbOfHit = 0;
-	sf::Sound enemyKilled;
+	sf::Sound enemyKilledSound;
 	sf::Clock explosionTimer;
 	sf::Clock respawnTimer;
 };

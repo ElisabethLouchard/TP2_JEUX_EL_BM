@@ -95,8 +95,9 @@ bool GameScene::init()
     {
         Enemy enemy;
         enemy.init(gameContentManager);
+        enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 10.0f, - 50.0f * (float)(rand() % 100)));
         enemies.push_back(enemy);
-        enemy.loadEnemySpeaks(gameContentManager.getEnemyKilledSoundBuffer());
+        enemy.loadEnemySound(gameContentManager.getEnemyKilledSoundBuffer());
     }
     return player.init(gameContentManager);
 }

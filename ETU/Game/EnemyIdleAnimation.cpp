@@ -3,9 +3,9 @@
 #include "ContentManager.h"
 #include "GameContentManager.h"
 
-const float EnemyIdleAnimation::ANIMATION_LENGTH = 0.0f;
+const float EnemyIdleAnimation::ANIMATION_LENGTH = 2.0f;
 
-EnemyIdleAnimation::EnemyIdleAnimation(sf::Sprite& s) : LinearAnimation(s, ANIMATION_LENGTH, false)
+EnemyIdleAnimation::EnemyIdleAnimation(sf::Sprite& s) : CyclicAnimation(s, ANIMATION_LENGTH, true)
 {
 
 }

@@ -26,9 +26,9 @@ Enemy::Enemy(const Enemy& src)
 }
 bool Enemy::init(const ContentManager& contentManager)
 {
+    setScale(0.75, 0.75);
     isDead = false;
 
-    setPosition(sf::Vector2f((float)(rand() % Game::GAME_WIDTH), (float)(rand() % -1000)));
     activate();
 
     currentState = State::STANDARD_ENEMY;
@@ -75,12 +75,12 @@ void Enemy::onDying()
     deactivate();
 }
 
-void Enemy::loadEnemySpeaks(const sf::SoundBuffer& soundbuffer)
+void Enemy::loadEnemySound(const sf::SoundBuffer& soundbuffer)
 {
-    enemyKilled.setBuffer(soundbuffer);
+    enemyKilledSound.setBuffer(soundbuffer);
 }
 
 void Enemy::speak()
 {
-    enemyKilled.play();
+    enemyKilledSound.play();
 }

@@ -1,6 +1,6 @@
 #pragma once
-#include "LinearAnimation.h"
-class EnemyIdleAnimation : public LinearAnimation
+#include "CyclicAnimation.h"
+class EnemyIdleAnimation : public CyclicAnimation
 {
 	static const float ANIMATION_LENGTH;
 public:
