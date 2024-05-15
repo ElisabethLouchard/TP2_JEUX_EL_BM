@@ -25,6 +25,10 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="EnemyExplosionAnimation.cpp" />
     <ClCompile Include="EnemyIdleAnimation.cpp" />
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="LifeBonus.cpp" />
+    <ClCompile Include="WeaponBonus.cpp" />
+    <ClCompile Include="random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -59,6 +63,10 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="EnemyExplosionAnimation.h" />
     <ClInclude Include="EnemyIdleAnimation.h" />
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="LifeBonus.h" />
+    <ClInclude Include="WeaponBonus.h" />
+    <ClInclude Include="random.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

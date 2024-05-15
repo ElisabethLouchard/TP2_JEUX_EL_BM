@@ -159,6 +159,7 @@
     <ClInclude Include="AnimatedGameObject.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="CyclicAnimation.h" />
@@ -173,7 +174,9 @@
     <ClInclude Include="Hud.h" />
     <ClInclude Include="InputBasedAnimation.h" />
     <ClInclude Include="Inputs.h" />
+    <ClInclude Include="LifeBonus.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="random.h" />
     <ClInclude Include="SceneResult.h" />
     <ClInclude Include="LinearAnimation.h" />
     <ClInclude Include="AnimationState.h" />
@@ -187,11 +190,13 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TitleContentManager.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="WeaponBonus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedGameObject.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CyclicAnimation.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -204,9 +209,11 @@
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="InputBasedAnimation.cpp" />
     <ClCompile Include="Inputs.cpp" />
+    <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="LinearAnimation.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="random.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreScene.cpp" />
     <ClCompile Include="ShipAnimation.cpp" />
@@ -218,6 +225,7 @@
     </ClCompile>
     <ClCompile Include="TitleContentManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="WeaponBonus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll">

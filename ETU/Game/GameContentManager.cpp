@@ -32,6 +32,21 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
+	if (!bonusTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - Miscellaneous.bmp"))
+	{
+		return false;
+	}
+
+	if (!weaponBonusSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\gunBonus.wav"))
+	{
+		return false;
+	}
+
+	if (!lifeBonusSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\healthBonus.wav"))
+	{
+		return false;
+	}
+
 	if (!shipAnimationTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - The Guardian Alyssa.bmp"))
 		return false;
 	return true;
@@ -65,6 +80,21 @@ const sf::SoundBuffer& GameContentManager::getEnemyKilledSoundBuffer() const
 const sf::Texture& GameContentManager::getEnemyTexture() const
 {
 	return enemyTexture;
+}
+
+const sf::Texture& GameContentManager::getBonusTexture() const
+{
+	return bonusTexture;
+}
+
+const sf::SoundBuffer& GameContentManager::getLifeBonusSoundBuffer() const
+{
+	return weaponBonusSoundBuffer;
+}
+
+const sf::SoundBuffer& GameContentManager::getWeaponBonusSoundBuffer() const
+{
+	return lifeBonusSoundBuffer;
 }
 
 GameContentManager::GameContentManager()

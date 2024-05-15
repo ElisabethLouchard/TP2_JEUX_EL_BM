@@ -40,8 +40,8 @@ bool Bonus::update(float elapsedTime)
 void Bonus::initialize(const sf::Texture& texture, const sf::Vector2f& initialPosition, const sf::SoundBuffer& sb)
 {
 	GameObject::initialize(texture, initialPosition);
-
 	soundBonus.setBuffer(sb);
+	setScale(4,4);
 }
 
 void Bonus::playSound()

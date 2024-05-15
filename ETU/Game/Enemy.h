@@ -13,6 +13,7 @@ public:
 	void onHit();
 	void onDying();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
+	bool isAlive();
 private:
 	void speak();
 	bool isDead;

@@ -84,3 +84,8 @@ void Enemy::speak()
 {
     enemyKilledSound.play();
 }
+
+bool Enemy::isAlive() 
+{
+    return !isDead;
+}

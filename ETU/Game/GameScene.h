@@ -6,6 +6,8 @@
 #include "GameContentManager.h"
 #include "Hud.h"
 #include "Bullet.h"
+#include "LifeBonus.h"
+#include "WeaponBonus.h"
 #include <list>
 
 class GameScene :
@@ -27,12 +29,17 @@ private:
     Player player;
     Hud hud;
     void fireBullet(const sf::Vector2f& position);
+    void spawnBonus(const sf::Vector2f& enemyPosition);
+    template<typename GameObject>
+    GameObject& getAvailableObject(std::list<GameObject>& objects);
     GameContentManager gameContentManager;
     std::list<Enemy> enemies;
+    std::list<LifeBonus> listLifeBonus;
+    std::list<WeaponBonus> listWeaponBonus;
+    std::list<Bullet> bullets;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
     bool hasTransition = false;
-    std::list<Bullet> bullets;
     float timeSinceLastFire;
     float timeSinceLastSpawn;
 };
