@@ -126,16 +126,17 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 
 void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 {
-    Bullet& b1 = getAvailableObject(playerBullets);
-    Bullet& b2 = getAvailableObject(playerBullets);
     if (isEnemy) {
-        b1 = getAvailableObject(enemyBullets);
-        b2 = getAvailableObject(enemyBullets);
+        Bullet& b1 = getAvailableObject(enemyBullets);
+        Bullet& b2 = getAvailableObject(enemyBullets);
+        b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
+        b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
     }
-
-    b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
-    b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
-    if (!isEnemy) {
+    else {
+        Bullet& b1 = getAvailableObject(playerBullets);
+        Bullet& b2 = getAvailableObject(playerBullets);
+        b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
+        b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
         inputs.fireBullet = false;
         recoil = MAX_RECOIL;
     }
