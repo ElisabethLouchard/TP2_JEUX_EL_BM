@@ -4,11 +4,11 @@
 #include "GameContentManager.h"
 #include "game.h"
 
-const float Bullet::BULLET_SPEED = 600;
-const unsigned long long Bullet::TIME_TO_LIVE = 2000;
+const float Bullet::BULLET_SPEED = 800;
 
 Bullet::Bullet(const sf::Vector2f& initialPosition, const sf::Vector2f& initialThrust)
     : GameObject()
+    ,isEnemy(false)
 {
     setPosition(initialPosition);
     move(initialThrust);
@@ -16,26 +16,63 @@ Bullet::Bullet(const sf::Vector2f& initialPosition, const sf::Vector2f& initialT
 
 Bullet::Bullet(const Bullet& src)
     :GameObject(src)
+    ,shotSound(src.shotSound)
+    ,isEnemy(src.isEnemy)
 {
 
+}
+
+Bullet& Bullet::operator=(const Bullet& rhs)
+{
+    if (this != &rhs)
+    {
+        GameObject::operator=(rhs);
+        GameObject::initialize(*rhs.getTexture(), rhs.getPosition());
+        shotSound = rhs.shotSound;
+        isEnemy = rhs.isEnemy;
+    }
+    return *this;
 }
 
 bool Bullet::update(float elapsedTime)
 {
-    move(sf::Vector2f(0, -BULLET_SPEED * elapsedTime));
-    if (getPosition().y > Game::GAME_HEIGHT)
-        return true;
+    if (isEnemy) {
+        move(sf::Vector2f(0, BULLET_SPEED * elapsedTime));
+        if (getPosition().y > Game::GAME_HEIGHT)
+            return true;
+    }
+    else {
+        move(sf::Vector2f(0, -BULLET_SPEED * elapsedTime));
+        if (getPosition().y < 0)
+            return true;
+    }
     return false;
 }
 
-bool Bullet::init(const ContentManager& contentManager)
+void Bullet::initialize(const sf::Texture& texture, const sf::Vector2f& initialPosition, const sf::SoundBuffer& sb, const bool isEnemy)
 {
-    const GameContentManager& gameContentManager = (const GameContentManager&)contentManager;
-    GameObject::init(gameContentManager);
-    setTexture(gameContentManager.getShipAnimationTexture());
+    this->isEnemy = isEnemy;
+    setScale(2, 2);
+    GameObject::initialize(texture, initialPosition);
     setTextureRect(sf::IntRect(264, 106, 16, 5));
-    setScale(2,2);
-    setRotation(90); 
-    return true;
+    setRotation(90);
+    if (isEnemy) {
+        setRotation(-90);
+        setTextureRect(sf::IntRect(287, 106, 16, 5));
+    }
+
+    shotSound.setBuffer(sb);
 }
 
+void Bullet::draw(sf::RenderWindow& window) const
+{
+    if (isActive())
+        window.draw(*this);
+}
+
+
+void Bullet::activate()
+{
+    GameObject::activate();
+    shotSound.play();
+}

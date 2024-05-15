@@ -41,7 +41,7 @@ void Bonus::initialize(const sf::Texture& texture, const sf::Vector2f& initialPo
 {
 	GameObject::initialize(texture, initialPosition);
 	soundBonus.setBuffer(sb);
-	setScale(4,4);
+	setScale(4, 4);
 }
 
 void Bonus::playSound()

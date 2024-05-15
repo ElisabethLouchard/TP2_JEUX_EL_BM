@@ -3,14 +3,16 @@
 class Bullet : public GameObject
 {
 	static const float BULLET_SPEED;
-	static const unsigned long long TIME_TO_LIVE;
 public:
 	Bullet(const sf::Vector2f& initialPosition = sf::Vector2f(0, 0), const sf::Vector2f& initialThrust = sf::Vector2f(0, 0));
 	Bullet(const Bullet& src);
-	virtual bool init(const ContentManager& manager);
-	bool update(float elapsedTime);
-
-private:
 	Bullet& operator=(const Bullet& rhs);
+	void draw(sf::RenderWindow& window) const;
+	void initialize(const sf::Texture& texture, const sf::Vector2f& initialPosition, const sf::SoundBuffer& sb, const bool isEnemy);
+	bool update(float elapsedTime) override;
+	void activate() override;
+private:
+	sf::Sound shotSound;
+	bool isEnemy;
 };
 

@@ -14,6 +14,8 @@ public:
 	const sf::Texture& getBonusTexture() const;
 	const sf::SoundBuffer& getLifeBonusSoundBuffer() const;
 	const sf::SoundBuffer& getWeaponBonusSoundBuffer() const;
+	const sf::SoundBuffer& getPlayerBulletSoundBuffer() const;
+	const sf::SoundBuffer& getEnemyBulletSoundBuffer() const;
 
 private:
 	sf::Texture gameBackgroundTexture;
@@ -21,6 +23,8 @@ private:
 	sf::Texture enemyTexture;
 	sf::Texture bonusTexture;
 	sf::Sprite gameBackground;
+	sf::SoundBuffer playerBulletSoundBuffer;
+	sf::SoundBuffer enemyBulletSoundBuffer;
 	sf::Font font;
 	sf::SoundBuffer gameMusicSoundBuffer;
 	sf::SoundBuffer enemyKilledSoundBuffer;

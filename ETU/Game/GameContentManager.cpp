@@ -32,6 +32,11 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
+	if (!playerBulletSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\playerGun.wav"))
+	{
+		return false;
+	}
+
 	if (!bonusTexture.loadFromFile("Assets\\Sprites\\Level01\\NES - The Guardian Legend - Miscellaneous.bmp"))
 	{
 		return false;
@@ -43,6 +48,11 @@ bool GameContentManager::loadContent()
 	}
 
 	if (!lifeBonusSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\healthBonus.wav"))
+	{
+		return false;
+	}
+
+	if (!enemyBulletSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\enemyGun.wav"))
 	{
 		return false;
 	}
@@ -95,6 +105,16 @@ const sf::SoundBuffer& GameContentManager::getLifeBonusSoundBuffer() const
 const sf::SoundBuffer& GameContentManager::getWeaponBonusSoundBuffer() const
 {
 	return lifeBonusSoundBuffer;
+}
+
+const sf::SoundBuffer& GameContentManager::getPlayerBulletSoundBuffer() const
+{
+	return playerBulletSoundBuffer;
+}
+
+const sf::SoundBuffer& GameContentManager::getEnemyBulletSoundBuffer() const
+{
+	return enemyBulletSoundBuffer;
 }
 
 GameContentManager::GameContentManager()
