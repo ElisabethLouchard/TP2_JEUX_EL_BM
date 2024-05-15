@@ -17,7 +17,7 @@ private:
   TitleContentManager titleContentManager;
   sf::Sprite menuImage;
   sf::Text instructions;
-  sf::Sound gameMusic;
+  sf::Music gameMusic;
   bool hasTransition = false;
 };
 
