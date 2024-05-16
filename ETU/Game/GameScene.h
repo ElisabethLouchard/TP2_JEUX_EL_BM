@@ -43,6 +43,9 @@ private:
     std::list<WeaponBonus> listWeaponBonus;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
+    int nbOfLives = 5;
+    int score = 100;
+    int bonus = 0;
     bool hasTransition = false;
     std::list<Bullet> playerBullets;
     std::list<Bullet> enemyBullets;

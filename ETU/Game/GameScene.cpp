@@ -78,7 +78,38 @@ SceneType GameScene::update()
 		}
 	}
 
+	for(Bonus& b : listLifeBonus)
+	{
+		if (b.isActive())
+		{
+			b.update(1.0f / (float)Game::FRAME_RATE);
+			if (b.collidesWith(player))
+			{
+				hud.updateNbOfLiveText(nbOfLives += 1);
+				hud.updateScoreText(score += 10);
+				b.playSound();
+				b.deactivate();
+			}
+		}
+	}
+
+	for (Bonus& b : listWeaponBonus)
+	{
+		if (b.isActive())
+		{
+			b.update(1.0f / (float)Game::FRAME_RATE);
+			if (b.collidesWith(player))
+			{
+				hud.updateScoreText(score += 10);
+				hud.updateBonusText(50);
+				b.playSound();
+				b.deactivate();
+			}
+		}
+	}
+
 	timeSinceLastFire += TIME_PER_FRAME;
+
 	if (hasTransition)
 	{
 		pause();

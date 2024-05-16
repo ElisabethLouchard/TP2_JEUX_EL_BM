@@ -33,6 +33,7 @@ void Bonus::draw(sf::RenderWindow& window) const
 
 bool Bonus::update(float elapsedTime)
 {
+	move(sf::Vector2f(0, 5));
 	return true;
 }
 
