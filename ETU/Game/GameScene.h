@@ -39,6 +39,9 @@ private:
     std::list<Bullet> bullets;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
+    int nbOfLives = 5;
+    int score = 100;
+    int bonus = 0;
     bool hasTransition = false;
     float timeSinceLastFire;
     float timeSinceLastSpawn;
