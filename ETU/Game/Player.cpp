@@ -34,6 +34,6 @@ void Player::adjustCrossingViewLimits()
 {
     sf::Vector2f position = getPosition();
     position.x = std::max(getGlobalBounds().width / 2.0f, std::min(position.x, Game::GAME_WIDTH - getGlobalBounds().width / 2.0f));
-    position.y = std::max(getGlobalBounds().height / 2.0f, std::min(position.y, Game::GAME_HEIGHT - getGlobalBounds().height / 2.0f));
+    position.y = std::max(getGlobalBounds().height / 2.0f, std::min(position.y, (Game::GAME_HEIGHT - Game::HUD_HEIGHT) - getGlobalBounds().height / 2.0f));
     setPosition(position);
 }

@@ -14,6 +14,9 @@ public:
   static const unsigned int GAME_WIDTH;
   static const unsigned int GAME_HEIGHT;
 
+  static const unsigned int HUD_WIDTH;
+  static const unsigned int HUD_HEIGHT;
+
 public:
   Game(std::string windowName);
   void run();
