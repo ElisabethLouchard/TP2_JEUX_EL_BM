@@ -13,6 +13,10 @@ public:
     void adjustCrossingViewLimits();
     void kill();
     bool isAlive() const;
+    bool getHasBonus() const;
+    void deactivateBonus();
+    void activateBonus();
 private:
     bool isDead;
+    bool hasBonus = false;
 };

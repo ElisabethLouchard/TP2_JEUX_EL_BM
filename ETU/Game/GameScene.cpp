@@ -6,7 +6,7 @@
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
 const float spawnInterval = 0.01f;
-const float BONUS_SPAWN_CHANCE = 0.2f;
+const float BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 15;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
@@ -78,31 +78,38 @@ SceneType GameScene::update()
 		}
 	}
 
-	for(Bonus& b : listLifeBonus)
+	for (Bullet& b : enemyBullets)
+	{
+		if (b.collidesWith(player))
+		{
+			player.deactivateBonus();
+		}
+	}
+
+	for(LifeBonus& b : listLifeBonus)
 	{
 		if (b.isActive())
 		{
-			b.update(1.0f / (float)Game::FRAME_RATE);
+			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
 				hud.updateNbOfLiveText(nbOfLives += 1);
 				hud.updateScoreText(score += 10);
-				b.playSound();
 				b.deactivate();
 			}
 		}
 	}
 
-	for (Bonus& b : listWeaponBonus)
+	for (WeaponBonus& b : listWeaponBonus)
 	{
 		if (b.isActive())
 		{
-			b.update(1.0f / (float)Game::FRAME_RATE);
+			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
 				hud.updateScoreText(score += 10);
 				hud.updateBonusText(50);
-				b.playSound();
+				player.activateBonus();
 				b.deactivate();
 			}
 		}
@@ -146,7 +153,7 @@ bool GameScene::init()
 	}
 	gameBackground.setTexture(gameContentManager.getBackgroundTexture());
 	hud.initialize(gameContentManager);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		Enemy enemy;
 		enemy.init(gameContentManager);
@@ -219,6 +226,10 @@ void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 		Bullet& b2 = getAvailableObject(playerBullets);
 		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
 		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+		if (player.getHasBonus()) {
+			Bullet& b3 = getAvailableObject(playerBullets);
+			b3.setPosition(object.getPosition());
+		}
 		inputs.fireBullet = false;
 		recoil = MAX_RECOIL;
 	}

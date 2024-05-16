@@ -26,7 +26,7 @@ Enemy::Enemy(const Enemy& src)
 }
 bool Enemy::init(const ContentManager& contentManager)
 {
-    setScale(0.75, 0.75);
+    setScale(1, 0.5);
     isDead = false;
 
     activate();

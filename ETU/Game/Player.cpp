@@ -48,3 +48,18 @@ bool Player::isAlive() const
 {
     return !isDead;
 }
+
+bool Player::getHasBonus() const
+{
+    return hasBonus;
+}
+
+void Player::deactivateBonus()
+{
+    hasBonus = false; 
+}
+
+void Player::activateBonus()
+{
+    hasBonus = true;
+}
