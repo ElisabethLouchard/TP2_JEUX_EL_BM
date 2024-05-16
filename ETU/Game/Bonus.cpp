@@ -25,12 +25,6 @@ Bonus& Bonus::operator=(const Bonus& rhs)
 	return *this;
 }
 
-void Bonus::draw(sf::RenderWindow& window) const
-{
-	window.draw(*this);
-}
-
-
 bool Bonus::update(float elapsedTime)
 {
 	move(sf::Vector2f(0, 5));
@@ -45,7 +39,8 @@ void Bonus::initialize(const sf::Texture& texture, const sf::Vector2f& initialPo
 	setScale(4, 4);
 }
 
-void Bonus::playSound()
+void Bonus::deactivate() 
 {
+	GameObject::deactivate();
 	soundBonus.play();
 }

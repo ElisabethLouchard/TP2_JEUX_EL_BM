@@ -6,7 +6,7 @@
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
 const float spawnInterval = 0.01f;
-const float BONUS_SPAWN_CHANCE = 0.2f;
+const float BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 15;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
@@ -78,31 +78,29 @@ SceneType GameScene::update()
 		}
 	}
 
-	for(Bonus& b : listLifeBonus)
+	for(LifeBonus& b : listLifeBonus)
 	{
 		if (b.isActive())
 		{
-			b.update(1.0f / (float)Game::FRAME_RATE);
+			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
 				hud.updateNbOfLiveText(nbOfLives += 1);
 				hud.updateScoreText(score += 10);
-				b.playSound();
 				b.deactivate();
 			}
 		}
 	}
 
-	for (Bonus& b : listWeaponBonus)
+	for (WeaponBonus& b : listWeaponBonus)
 	{
 		if (b.isActive())
 		{
-			b.update(1.0f / (float)Game::FRAME_RATE);
+			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
 				hud.updateScoreText(score += 10);
 				hud.updateBonusText(50);
-				b.playSound();
 				b.deactivate();
 			}
 		}
