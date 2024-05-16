@@ -1,4 +1,39 @@
-﻿  GameScene.cpp
+﻿  stdafx.cpp
+  AnimatedGameObject.cpp
+  Animation.cpp
+  AnimationFrame.cpp
+  Bonus.cpp
+  Bullet.cpp
+  CyclicAnimation.cpp
+  Enemy.cpp
+  EnemyExplosionAnimation.cpp
+  EnemyIdleAnimation.cpp
+  game.cpp
+  GameContentManager.cpp
+  GameObject.cpp
+  GameScene.cpp
+  Hud.cpp
+  InputBasedAnimation.cpp
+  Inputs.cpp
+  LifeBonus.cpp
+  LinearAnimation.cpp
+  Player.cpp
+C:\Programmation_de_jeu\Tp2\ETU\Game\Player.cpp(17,73): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+  Publisher.cpp
+  Génération de code en cours...
+  Compilation en cours...
+  random.cpp
+  Scene.cpp
+  ScoreScene.cpp
+  ShipAnimation.cpp
+  TitleContentManager.cpp
+  TitleScene.cpp
+  WeaponBonus.cpp
+  Génération de code en cours...
   Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg

@@ -14,7 +14,10 @@ class GameScene :
     public Scene
 {
 public:
+    static const unsigned int MAX_RECOIL;
     static const float TIME_BETWEEN_FIRE;
+    static const float TIME_PER_FRAME;
+    static const unsigned int NB_BULLETS;
 
     // Héritées via Scene
     GameScene();
@@ -28,21 +31,24 @@ private:
     Inputs inputs;
     Player player;
     Hud hud;
-    void fireBullet(const sf::Vector2f& position);
     void spawnBonus(const sf::Vector2f& enemyPosition);
     template<typename GameObject>
     GameObject& getAvailableObject(std::list<GameObject>& objects);
+    int recoil = 0;
+    void fireBullet(const GameObject& object, const bool isEnemy);
+    void initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy);
     GameContentManager gameContentManager;
     std::list<Enemy> enemies;
     std::list<LifeBonus> listLifeBonus;
     std::list<WeaponBonus> listWeaponBonus;
-    std::list<Bullet> bullets;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
     int nbOfLives = 5;
     int score = 100;
     int bonus = 0;
     bool hasTransition = false;
+    std::list<Bullet> playerBullets;
+    std::list<Bullet> enemyBullets;
     float timeSinceLastFire;
     float timeSinceLastSpawn;
 };

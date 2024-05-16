@@ -7,6 +7,9 @@
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
 const float spawnInterval = 0.01f;
 const float BONUS_SPAWN_CHANCE = 0.2f;
+const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
+const unsigned int GameScene::NB_BULLETS = 15;
+const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
 
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
@@ -18,32 +21,45 @@ GameScene::~GameScene()
 {
 
 }
+
 SceneType GameScene::update()
 {
 	static int cptScrollBackground = 0;
 	gameBackground.setTextureRect(sf::IntRect(0, (int)(0.5f * cptScrollBackground--), Game::GAME_WIDTH, Game::GAME_HEIGHT));
 	SceneType retval = getSceneType();
-	player.update(1.0f / (float)Game::FRAME_RATE, inputs);
-	for (Bullet& b : bullets)
-	{
-		if (b.update(1.0f / (float)Game::FRAME_RATE))
-			b.deactivate();
-	}
+	recoil = std::max(0, recoil - 1);
+	player.update(TIME_PER_FRAME, inputs);
 
 	for (Enemy& e : enemies)
 	{
-		if (e.update(1.0f / (float)Game::FRAME_RATE, inputs))
+		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
 	}
 
-	if (inputs.fireBullet && timeSinceLastFire >= TIME_BETWEEN_FIRE)
-	{
-		fireBullet(player.getPosition());
-	}
+    for (Bullet& b : playerBullets)
+    {
+        if (b.update(TIME_PER_FRAME)) {
+            b.deactivate();
+        }
+    }
+
+    for (Bullet& b : enemyBullets)
+    {
+        if (b.update(TIME_PER_FRAME)) {
+            b.deactivate();
+        }
+    }
+
+    if (inputs.fireBullet && recoil == 0)
+    {
+        fireBullet(player, false);
+    }
+
+    timeSinceLastFire += TIME_PER_FRAME;
 
 	for (Enemy& e : enemies)
 	{
-		for (Bullet& b : bullets)
+		for (Bullet& b : playerBullets)
 		{
 			if (b.collidesWith(e))
 			{
@@ -85,16 +101,15 @@ SceneType GameScene::update()
 			if (b.collidesWith(player))
 			{
 				hud.updateScoreText(score += 10);
-				hud.updateBonusText(bonus += 50);
+				hud.updateBonusText(50);
 				b.playSound();
 				b.deactivate();
 			}
 		}
 	}
 
-	bullets.remove_if([](const GameObject& b) {return !b.isActive(); });
-	enemies.remove_if([](const GameObject& b) {return !b.isActive(); });
-	timeSinceLastFire += 1.0f / (float)Game::FRAME_RATE;
+	timeSinceLastFire += TIME_PER_FRAME;
+
 	if (hasTransition)
 	{
 		pause();
@@ -107,7 +122,9 @@ SceneType GameScene::update()
 void GameScene::draw(sf::RenderWindow& window) const
 {
 	window.draw(gameBackground);
-	for (const Bullet& b : bullets)
+	for (const Bullet& b : playerBullets)
+		b.draw(window);
+	for (const Bullet& b : enemyBullets)
 		b.draw(window);
 	player.draw(window);
 	for (const LifeBonus& b : listLifeBonus)
@@ -153,7 +170,13 @@ bool GameScene::init()
 		weaponBonus.initialize(gameContentManager.getBonusTexture(), initialPosition, gameContentManager.getWeaponBonusSoundBuffer());
 		listWeaponBonus.push_back(weaponBonus);
 	}
-	return player.init(gameContentManager);
+
+    initializeBulletPool(playerBullets, gameContentManager.getShipAnimationTexture(), false);
+    initializeBulletPool(enemyBullets, gameContentManager.getShipAnimationTexture(), true);
+    
+    hud.initialize(gameContentManager);
+
+    return player.init(gameContentManager);
 }
 
 bool GameScene::uninit()
@@ -183,20 +206,22 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 	return retval;
 }
 
-void GameScene::fireBullet(const sf::Vector2f& position)
+void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 {
-	Bullet newBullet1;
-	newBullet1.init(gameContentManager);
-	newBullet1.setPosition(sf::Vector2f(position.x + player.getGlobalBounds().width / 3, position.y));
-	newBullet1.activate();
-	bullets.push_back(newBullet1);
-
-	Bullet newBullet2;
-	newBullet2.init(gameContentManager);
-	newBullet2.setPosition(sf::Vector2f(position.x - player.getGlobalBounds().width / 3, position.y));
-	newBullet2.activate();
-	bullets.push_back(newBullet2);
-	timeSinceLastFire = 0;
+	if (isEnemy) {
+		Bullet& b1 = getAvailableObject(enemyBullets);
+		Bullet& b2 = getAvailableObject(enemyBullets);
+		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
+		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+	}
+	else {
+		Bullet& b1 = getAvailableObject(playerBullets);
+		Bullet& b2 = getAvailableObject(playerBullets);
+		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
+		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+		inputs.fireBullet = false;
+		recoil = MAX_RECOIL;
+	}
 }
 
 void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
@@ -221,17 +246,31 @@ void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
 	}
 }
 
+void GameScene::initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy) {
+    // TODO : DRY
+    for (int i = 0; i < NB_BULLETS; i++) {
+        Bullet newBullet;
+        if (isEnemy) {
+            newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getEnemyBulletSoundBuffer(), isEnemy);
+        }
+        else {
+            newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getPlayerBulletSoundBuffer(), isEnemy);
+        }
+        bulletPool.push_back(newBullet);
+    }
+}
+
 template<typename GameObject>
 GameObject& GameScene::getAvailableObject(std::list<GameObject>& objects)
 {
-	for (GameObject& obj : objects)
-	{
-		if (!obj.isActive())
-		{
-			obj.activate();
-			return obj;
-		}
-	}
+    for (GameObject& obj : objects)
+    {
+        if (!obj.isActive())
+        {
+            obj.activate();
+            return obj;
+        }
+    }
 
-	return objects.back();
+    return objects.back();
 }
