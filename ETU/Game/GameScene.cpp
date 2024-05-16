@@ -78,6 +78,14 @@ SceneType GameScene::update()
 		}
 	}
 
+	for (Bullet& b : enemyBullets)
+	{
+		if (b.collidesWith(player))
+		{
+			player.deactivateBonus();
+		}
+	}
+
 	for(LifeBonus& b : listLifeBonus)
 	{
 		if (b.isActive())
@@ -101,6 +109,7 @@ SceneType GameScene::update()
 			{
 				hud.updateScoreText(score += 10);
 				hud.updateBonusText(50);
+				player.activateBonus();
 				b.deactivate();
 			}
 		}
@@ -144,7 +153,7 @@ bool GameScene::init()
 	}
 	gameBackground.setTexture(gameContentManager.getBackgroundTexture());
 	hud.initialize(gameContentManager);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		Enemy enemy;
 		enemy.init(gameContentManager);
@@ -217,6 +226,10 @@ void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 		Bullet& b2 = getAvailableObject(playerBullets);
 		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
 		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+		if (player.getHasBonus()) {
+			Bullet& b3 = getAvailableObject(playerBullets);
+			b3.setPosition(object.getPosition());
+		}
 		inputs.fireBullet = false;
 		recoil = MAX_RECOIL;
 	}

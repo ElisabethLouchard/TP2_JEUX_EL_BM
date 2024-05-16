@@ -11,4 +11,10 @@ public:
     virtual bool init(const ContentManager& contentManager) override;
     bool update(float deltaT, const Inputs& inputs);
     void adjustCrossingViewLimits();
+    bool getHasBonus() const;
+    void deactivateBonus();
+    void activateBonus();
+
+private:
+    bool hasBonus = false;
 };

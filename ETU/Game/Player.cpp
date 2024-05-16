@@ -37,3 +37,18 @@ void Player::adjustCrossingViewLimits()
     position.y = std::max(getGlobalBounds().height / 2.0f, std::min(position.y, Game::GAME_HEIGHT - getGlobalBounds().height / 2.0f));
     setPosition(position);
 }
+
+bool Player::getHasBonus() const
+{
+    return hasBonus;
+}
+
+void Player::deactivateBonus()
+{
+    hasBonus = false; 
+}
+
+void Player::activateBonus()
+{
+    hasBonus = true;
+}
