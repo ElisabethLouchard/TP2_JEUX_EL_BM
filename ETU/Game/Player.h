@@ -11,4 +11,8 @@ public:
     virtual bool init(const ContentManager& contentManager) override;
     bool update(float deltaT, const Inputs& inputs);
     void adjustCrossingViewLimits();
+    void kill();
+    bool isAlive() const;
+private:
+    bool isDead;
 };

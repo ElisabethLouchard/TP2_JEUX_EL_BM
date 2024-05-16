@@ -13,8 +13,9 @@ Player::Player()
 
 bool Player::init(const ContentManager& contentManager)
 {
+    isDead = false;
     setScale(3, 3);
-    setPosition(sf::Vector2f(Game::GAME_WIDTH * 0.5f, Game::GAME_HEIGHT - 200)); // TODO : Changer la position en Y (+dynamique)
+    setPosition(sf::Vector2f(Game::GAME_WIDTH * 0.5f, Game::GAME_HEIGHT - Game::HUD_HEIGHT));
     activate();
 
     currentState = State::SHIP;
@@ -36,4 +37,14 @@ void Player::adjustCrossingViewLimits()
     position.x = std::max(getGlobalBounds().width / 2.0f, std::min(position.x, Game::GAME_WIDTH - getGlobalBounds().width / 2.0f));
     position.y = std::max(getGlobalBounds().height / 2.0f, std::min(position.y, (Game::GAME_HEIGHT - Game::HUD_HEIGHT) - getGlobalBounds().height / 2.0f));
     setPosition(position);
+}
+
+void Player::kill()
+{
+    isDead = true;
+}
+
+bool Player::isAlive() const
+{
+    return !isDead;
 }
