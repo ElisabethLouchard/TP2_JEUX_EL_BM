@@ -164,8 +164,10 @@
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="CyclicAnimation.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyExplosionAnimation.h" />
     <ClInclude Include="EnemyIdleAnimation.h" />
+    <ClInclude Include="EnemyRegular.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameContentManager.h" />
@@ -200,8 +202,10 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CyclicAnimation.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyExplosionAnimation.cpp" />
     <ClCompile Include="EnemyIdleAnimation.cpp" />
+    <ClCompile Include="EnemyRegular.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameContentManager.cpp" />
     <ClCompile Include="GameObject.cpp" />

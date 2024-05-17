@@ -9,9 +9,9 @@ public:
 	Enemy();
 	Enemy(const Enemy& src);
 	virtual bool init(const ContentManager& contentManager) override;
-	bool update(float deltaT, const Inputs& inputs) override;
-	void onHit();
-	void onDying();
+	virtual bool update(float deltaT, const Inputs& inputs) override;
+	virtual void onHit();
+	virtual void onDying();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
 	bool isAlive();
 private:

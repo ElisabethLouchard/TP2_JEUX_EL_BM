@@ -29,6 +29,8 @@
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="WeaponBonus.cpp" />
     <ClCompile Include="random.cpp" />
+    <ClCompile Include="EnemyBoss.cpp" />
+    <ClCompile Include="EnemyRegular.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -67,6 +69,8 @@
     <ClInclude Include="LifeBonus.h" />
     <ClInclude Include="WeaponBonus.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="EnemyBoss.h" />
+    <ClInclude Include="EnemyRegular.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

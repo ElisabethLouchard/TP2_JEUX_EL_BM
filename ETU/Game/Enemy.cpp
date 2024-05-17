@@ -32,7 +32,7 @@ bool Enemy::init(const ContentManager& contentManager)
     activate();
 
     currentState = State::STANDARD_ENEMY;
-    addAnimation<State::STANDARD_ENEMY,EnemyIdleAnimation>(contentManager);
+    addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
     addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
     return AnimatedGameObject::init(contentManager);
