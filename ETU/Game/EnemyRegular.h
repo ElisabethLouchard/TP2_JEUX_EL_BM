@@ -10,7 +10,7 @@ public:
     bool init(const ContentManager& contentManager) override;
     bool update(float deltaT, const Inputs& inputs) override;
     void onHit() override;
-    void onDying() override;
+    void kill() override;
 private:
     bool isDead= false;
     bool isExploding = false;

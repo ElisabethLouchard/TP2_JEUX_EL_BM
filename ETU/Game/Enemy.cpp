@@ -4,18 +4,17 @@
 #include "game.h"
 #include "ContentManager.h"
 #include "EnemyIdleAnimation.h"
+#include "Publisher.h"
 
-const short Enemy::MAX_NB_OF_HITS = 1;
+const short Enemy::MAX_NB_OF_HITS = 5;
 
 Enemy::Enemy()
-    : isDead(false)
-    , nbOfHit(0)
+    : nbOfHit(0)
 {
 
 }
 Enemy::Enemy(const Enemy& src)
     : AnimatedGameObject(src)
-    , isDead(src.isDead)
     , nbOfHit(src.nbOfHit)
 {
     init(*contentManager);
@@ -29,7 +28,6 @@ Enemy::Enemy(const Enemy& src)
 
 bool Enemy::init(const ContentManager& contentManager)
 {
-    isDead = false;
     currentState = State::STANDARD_ENEMY;
     addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
     activate();
@@ -46,13 +44,13 @@ void Enemy::onHit()
 {
     nbOfHit++;
     if (nbOfHit >= MAX_NB_OF_HITS)
-        onDying();
+        kill();
 }
 
-void Enemy::onDying()
+void Enemy::kill()
 {
-    isDead = true;
     speak();
+    Publisher::notifySubscribers(Event::ENEMY_KILLED, this);
     deactivate();
 }
 
@@ -64,9 +62,4 @@ void Enemy::loadEnemySound(const sf::SoundBuffer& soundbuffer)
 void Enemy::speak()
 {
     enemyKilledSound.play();
-}
-
-bool Enemy::isAlive() const
-{
-    return !isDead;
 }

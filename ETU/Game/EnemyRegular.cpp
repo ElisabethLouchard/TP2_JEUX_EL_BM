@@ -39,7 +39,7 @@ void EnemyRegular::onHit()
     Enemy::onHit();
 }
 
-void EnemyRegular::onDying()
+void EnemyRegular::kill()
 {
-    Enemy::onDying();
+    Enemy::kill();
 }

@@ -44,9 +44,9 @@ void EnemyBoss::onHit()
     currentState = State::EXPLODING;
 }
 
-void EnemyBoss::onDying()
+void EnemyBoss::kill()
 {
-    Enemy::onDying();
+    Enemy::kill();
 }
 
 void EnemyBoss::setDestination(const sf::Vector2f& dest)

@@ -11,12 +11,10 @@ public:
 	virtual bool init(const ContentManager& contentManager) override;
 	virtual bool update(float deltaT, const Inputs& inputs) override;
 	virtual void onHit();
-	virtual void onDying();
+	virtual void kill();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
-	bool isAlive() const;
 private:
 	void speak();
-	bool isDead;
 	int nbOfHit;
 	sf::Sound enemyKilledSound;
 };

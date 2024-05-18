@@ -9,7 +9,7 @@ public:
     bool init(const ContentManager& contentManager) override;
     bool update(float deltaT, const Inputs& inputs) override;
     void onHit() override;
-    void onDying() override;
+    void kill() override;
     void setDestination(const sf::Vector2f& dest);
     bool getShouldFireBullet() const;
 private:

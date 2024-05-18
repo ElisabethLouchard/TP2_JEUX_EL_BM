@@ -3,15 +3,19 @@
 #include "game.h"
 #include "GameContentManager.h"
 #include "random.h"
+#include "Subscriber.h"
+#include "Publisher.h"
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
-const float GameScene::BONUS_SPAWN_CHANCE = 1.0f;
+const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 15;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
 
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
+	, timeSinceLastFire(0)
+	, timeSinceLastSpawn(0)
 {
 
 }
@@ -42,26 +46,26 @@ SceneType GameScene::update()
 			e.deactivate();
 	}
 
-    for (Bullet& b : playerBullets)
-    {
-        if (b.update(TIME_PER_FRAME)) {
-            b.deactivate();
-        }
-    }
+	for (Bullet& b : playerBullets)
+	{
+		if (b.update(TIME_PER_FRAME)) {
+			b.deactivate();
+		}
+	}
 
-    for (Bullet& b : enemyBullets)
-    {
-        if (b.update(TIME_PER_FRAME)) {
-            b.deactivate();
-        }
-    }
+	for (Bullet& b : enemyBullets)
+	{
+		if (b.update(TIME_PER_FRAME)) {
+			b.deactivate();
+		}
+	}
 
-    if (inputs.fireBullet && recoil == 0)
-    {
-        fireBullet(player, false);
-    }
+	if (inputs.fireBullet && recoil == 0)
+	{
+		fireBullet(player, false);
+	}
 
-    timeSinceLastFire += TIME_PER_FRAME;
+	timeSinceLastFire += TIME_PER_FRAME;
 
 	for (EnemyRegular& e : enemies)
 	{
@@ -71,16 +75,11 @@ SceneType GameScene::update()
 			{
 				b.deactivate();
 				e.onHit();
-				if (!e.isAlive())
-				{
-					spawnBonus(e.getPosition());
-				}
 			}
 		}
 		if (player.collidesWith(e))
 		{
-			e.onDying();
-			spawnBonus(e.getPosition());
+			e.kill();
 		}
 	}
 
@@ -92,16 +91,15 @@ SceneType GameScene::update()
 		}
 	}
 
-	for(LifeBonus& b : listLifeBonus)
+	for (LifeBonus& b : listLifeBonus)
 	{
 		if (b.isActive())
 		{
 			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
-				hud.updateNbOfLiveText(nbOfLives += 1);
-				hud.updateScoreText(score += 10);
 				b.deactivate();
+				player.pickUpHealthBonus();
 			}
 		}
 	}
@@ -113,10 +111,8 @@ SceneType GameScene::update()
 			b.update(TIME_PER_FRAME);
 			if (b.collidesWith(player))
 			{
-				hud.updateScoreText(score += 10);
-				hud.updateBonusText(50);
-				player.activateBonus();
 				b.deactivate();
+				player.pickUpGunBonus();
 			}
 		}
 	}
@@ -153,6 +149,10 @@ void GameScene::draw(sf::RenderWindow& window) const
 
 bool GameScene::init()
 {
+	Publisher::addSubscriber(*this, Event::ENEMY_KILLED);
+	Publisher::addSubscriber(*this, Event::HEALTH_PICKED_UP);
+	Publisher::addSubscriber(*this, Event::GUN_PICKED_UP);
+
 	inputs.reset();
 	if (gameContentManager.loadContent() == false)
 	{
@@ -188,12 +188,12 @@ bool GameScene::init()
 		listWeaponBonus.push_back(weaponBonus);
 	}
 
-    initializeBulletPool(playerBullets, gameContentManager.getShipAnimationTexture(), false);
-    initializeBulletPool(enemyBullets, gameContentManager.getShipAnimationTexture(), true);
-    
-    hud.initialize(gameContentManager);
+	initializeBulletPool(playerBullets, gameContentManager.getShipAnimationTexture(), false);
+	initializeBulletPool(enemyBullets, gameContentManager.getShipAnimationTexture(), true);
 
-    return player.init(gameContentManager);
+	hud.initialize(gameContentManager);
+
+	return player.init(gameContentManager);
 }
 
 bool GameScene::uninit()
@@ -268,30 +268,65 @@ void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
 }
 
 void GameScene::initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy) {
-    // TODO : DRY
-    for (int i = 0; i < NB_BULLETS; i++) {
-        Bullet newBullet;
-        if (isEnemy) {
-            newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getEnemyBulletSoundBuffer(), isEnemy);
-        }
-        else {
-            newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getPlayerBulletSoundBuffer(), isEnemy);
-        }
-        bulletPool.push_back(newBullet);
-    }
+	for (int i = 0; i < NB_BULLETS; i++) {
+		Bullet newBullet;
+		if (isEnemy) {
+			newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getEnemyBulletSoundBuffer(), isEnemy);
+		}
+		else {
+			newBullet.initialize(texture, sf::Vector2f(0, 0), gameContentManager.getPlayerBulletSoundBuffer(), isEnemy);
+		}
+		bulletPool.push_back(newBullet);
+	}
+}
+
+unsigned int GameScene::getScore() const
+{
+	return score;
+}
+
+void GameScene::notify(Event event, const void* data)
+{
+	switch (event)
+	{
+	case Event::NONE:
+		break;
+	case Event::HEALTH_PICKED_UP:
+	{
+		score += 50;
+		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
+		break;
+	}
+	case Event::GUN_PICKED_UP:
+	{
+		score += 50;
+		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
+		break;
+	}
+	case Event::ENEMY_KILLED:
+	{
+		const Enemy* enemy = static_cast<const Enemy*>(data);
+		score += 50;
+		spawnBonus(enemy->getPosition());
+		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 template<typename GameObject>
 GameObject& GameScene::getAvailableObject(std::list<GameObject>& objects)
 {
-    for (GameObject& obj : objects)
-    {
-        if (!obj.isActive())
-        {
-            obj.activate();
-            return obj;
-        }
-    }
+	for (GameObject& obj : objects)
+	{
+		if (!obj.isActive())
+		{
+			obj.activate();
+			return obj;
+		}
+	}
 
-    return objects.back();
+	return objects.back();
 }

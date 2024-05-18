@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "EnemyRegular.h"
 #include "EnemyBoss.h"
+#include "Enemy.h"
 #include "GameContentManager.h"
 #include "Hud.h"
 #include "Bullet.h"
@@ -13,7 +14,7 @@
 #include <list>
 
 class GameScene :
-    public Scene
+    public Scene, Subscriber
 {
 public:
     static const unsigned int MAX_RECOIL;
@@ -30,6 +31,8 @@ public:
     virtual bool init() override;
     virtual bool uninit() override;
     virtual bool handleEvents(sf::RenderWindow& window) override;
+    unsigned int getScore() const;
+    void notify(Event event, const void* data) override;
 private:
     Inputs inputs;
     Player player;
@@ -47,9 +50,7 @@ private:
     std::list<WeaponBonus> listWeaponBonus;
     sf::Texture gameBackgroundTexture;
     sf::Sprite gameBackground;
-    int nbOfLives = 5;
-    int score = 100;
-    int bonus = 0;
+    unsigned int score = 0;
     bool hasTransition = false;
     std::list<Bullet> playerBullets;
     std::list<Bullet> enemyBullets;

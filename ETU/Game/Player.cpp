@@ -3,6 +3,8 @@
 #include "Inputs.h"
 #include "game.h"
 #include "ShipAnimation.h"
+#include "Event.h"
+#include "Publisher.h"
 
 const float Player::SPEED = 2.0f;
 
@@ -13,7 +15,6 @@ Player::Player()
 
 bool Player::init(const ContentManager& contentManager)
 {
-    isDead = false;
     setScale(3, 3);
     setPosition(sf::Vector2f(Game::GAME_WIDTH * 0.5f, Game::GAME_HEIGHT - Game::HUD_HEIGHT));
     activate();
@@ -41,25 +42,47 @@ void Player::adjustCrossingViewLimits()
 
 void Player::kill()
 {
-    isDead = true;
+    nbOfLives = 0;
 }
 
 bool Player::isAlive() const
 {
-    return !isDead;
+    return nbOfLives != 0;
 }
 
 bool Player::getHasBonus() const
 {
-    return hasBonus;
+    return nbOfBonusPts > 0;
+}
+
+void Player::pickUpHealthBonus()
+{
+    nbOfLives++;
+    Publisher::notifySubscribers(Event::HEALTH_PICKED_UP, this);
+}
+
+void Player::pickUpGunBonus()
+{
+    activateBonus();
+    Publisher::notifySubscribers(Event::GUN_PICKED_UP, this);
 }
 
 void Player::deactivateBonus()
 {
-    hasBonus = false; 
+    nbOfBonusPts = 0;
 }
 
 void Player::activateBonus()
 {
-    hasBonus = true;
+    nbOfBonusPts = 100;
+}
+
+unsigned int Player::getNbOfLives() const
+{
+    return nbOfLives;
+}
+
+unsigned int Player::getNbOfBonusPts() const
+{
+    return nbOfBonusPts;
 }

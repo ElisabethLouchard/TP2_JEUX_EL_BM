@@ -16,7 +16,6 @@
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="LinearAnimation.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreScene.cpp" />
     <ClCompile Include="ShipAnimation.cpp" />
@@ -31,6 +30,9 @@
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyRegular.cpp" />
     <ClCompile Include="EnemyBossIdleAnimation.cpp" />
+    <ClCompile Include="Publisher.cpp">
+      <Filter>PubSub</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -53,13 +55,11 @@
     <ClInclude Include="SceneResult.h" />
     <ClInclude Include="LinearAnimation.h" />
     <ClInclude Include="AnimationState.h" />
-    <ClInclude Include="Publisher.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="scenetype.h" />
     <ClInclude Include="ScoreScene.h" />
     <ClInclude Include="ShipAnimation.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Subscriber.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TitleContentManager.h" />
     <ClInclude Include="TitleScene.h" />
@@ -71,6 +71,12 @@
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyRegular.h" />
     <ClInclude Include="EnemyBossIdleAnimation.h" />
+    <ClInclude Include="Subscriber.h">
+      <Filter>PubSub</Filter>
+    </ClInclude>
+    <ClInclude Include="Publisher.h">
+      <Filter>PubSub</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />
@@ -84,5 +90,10 @@
     <CopyFileToFolders Include="..\extern\SFML\bin\sfml-system-d-2.dll" />
     <CopyFileToFolders Include="..\extern\SFML\bin\sfml-window-2.dll" />
     <CopyFileToFolders Include="..\extern\SFML\bin\sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="PubSub">
+      <UniqueIdentifier>{47a8a90d-38ee-42f0-93d2-bbb6e8326c63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

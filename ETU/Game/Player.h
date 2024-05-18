@@ -1,5 +1,6 @@
 #pragma once
 #include "AnimatedGameObject.h"
+
 struct Inputs;
 class Player :
     public AnimatedGameObject
@@ -14,9 +15,13 @@ public:
     void kill();
     bool isAlive() const;
     bool getHasBonus() const;
+    void pickUpHealthBonus();
+    void pickUpGunBonus();
     void deactivateBonus();
     void activateBonus();
+    unsigned int getNbOfLives() const;
+    unsigned int getNbOfBonusPts() const;
 private:
-    bool isDead;
-    bool hasBonus = false;
+    unsigned int nbOfLives = 5;
+    unsigned int nbOfBonusPts = 0;
 };
