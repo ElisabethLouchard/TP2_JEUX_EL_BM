@@ -7,7 +7,7 @@
 #include "Publisher.h"
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
-const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
+const float GameScene::BONUS_SPAWN_CHANCE = 0.6f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 15;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
