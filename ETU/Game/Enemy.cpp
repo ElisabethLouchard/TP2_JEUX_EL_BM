@@ -10,13 +10,14 @@ const short Enemy::MAX_NB_OF_HITS = 1;
 Enemy::Enemy()
     : isDead(false)
     , nbOfHit(0)
+    , shouldFireBullets(false)
 {
-
 }
 Enemy::Enemy(const Enemy& src)
     : AnimatedGameObject(src)
     , isDead(src.isDead)
     , nbOfHit(src.nbOfHit)
+    , shouldFireBullets(src.shouldFireBullets)
 {
     init(*contentManager);
 
@@ -69,4 +70,9 @@ void Enemy::speak()
 bool Enemy::isAlive() const
 {
     return !isDead;
+}
+
+bool Enemy::getShouldFireBullet() const
+{
+    return shouldFireBullets;
 }

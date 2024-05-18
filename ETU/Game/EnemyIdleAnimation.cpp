@@ -7,7 +7,6 @@ const float EnemyIdleAnimation::ANIMATION_LENGTH = 2.0f;
 
 EnemyIdleAnimation::EnemyIdleAnimation(sf::Sprite& s) : CyclicAnimation(s, ANIMATION_LENGTH, true)
 {
-
 }
 
 bool EnemyIdleAnimation::init(const ContentManager& contentManager)

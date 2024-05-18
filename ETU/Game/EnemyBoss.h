@@ -11,9 +11,7 @@ public:
     void onHit() override;
     void onDying() override;
     void setDestination(const sf::Vector2f& dest);
-    bool getShouldFireBullet() const;
 private:
     float moveAngle;
-    bool shouldFireBullets;
 };
 

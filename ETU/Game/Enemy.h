@@ -14,10 +14,15 @@ public:
 	virtual void onDying();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
 	bool isAlive() const;
+	bool getShouldFireBullet() const;
 private:
 	void speak();
 	bool isDead;
 	int nbOfHit;
 	sf::Sound enemyKilledSound;
+	float initialDelay;
+
+protected:
+	bool shouldFireBullets;
 };
 

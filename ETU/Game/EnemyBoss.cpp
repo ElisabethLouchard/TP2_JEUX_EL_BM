@@ -30,12 +30,13 @@ bool EnemyBoss::init(const ContentManager& contentManager)
 
 bool EnemyBoss::update(float deltaT, const Inputs& inputs)
 {
+    bool returnValue = Enemy::update(deltaT, inputs);
     move(cos(moveAngle) * deltaT * MOVE_SPEED_X, sin(moveAngle) * deltaT * 5.0f);
     shouldFireBullets = false;
     if (animations[State::BOSS]->getPercentage() == 0.5) {
         shouldFireBullets = true;
     }
-    return Enemy::update(deltaT, inputs);
+    return returnValue;
 }
 
 void EnemyBoss::onHit()
@@ -52,9 +53,4 @@ void EnemyBoss::onDying()
 void EnemyBoss::setDestination(const sf::Vector2f& dest)
 {
     moveAngle = atan2f((dest.y - getPosition().y), (dest.x - getPosition().x));
-}
-
-bool EnemyBoss::getShouldFireBullet() const 
-{
-    return shouldFireBullets;
 }
