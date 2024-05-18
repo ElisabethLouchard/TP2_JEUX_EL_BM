@@ -7,10 +7,10 @@
 #include "Publisher.h"
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
-const float GameScene::BONUS_SPAWN_CHANCE = 0.6f;
+const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
-const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
+const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
 const unsigned int GameScene::NB_ENEMIES = 20;
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
@@ -89,7 +89,8 @@ SceneType GameScene::update()
 	{
 		if (b.collidesWith(player))
 		{
-			player.deactivateBonus();
+			player.reduceBonusPts();
+			player.reduceLifePts();
 		}
 	}
 
@@ -180,7 +181,6 @@ bool GameScene::init()
 		enemy.init(gameContentManager);
 		enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 20.0f, -50.0f * (float)(rand() % 100)));
 		enemies.push_back(enemy);
-		enemy.loadEnemySound(gameContentManager.getEnemyKilledSoundBuffer());
 	}
 
 	boss.init(gameContentManager);
@@ -243,12 +243,14 @@ void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 		Bullet& b2 = getAvailableObject(enemyBullets);
 		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
 		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+		b1.playSound();
 	}
 	else {
 		Bullet& b1 = getAvailableObject(playerBullets);
 		Bullet& b2 = getAvailableObject(playerBullets);
 		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
 		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
+		b1.playSound();
 		if (player.getHasBonus()) {
 			Bullet& b3 = getAvailableObject(playerBullets);
 			b3.setPosition(object.getPosition());

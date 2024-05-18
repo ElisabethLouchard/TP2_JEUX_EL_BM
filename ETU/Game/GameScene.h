@@ -10,6 +10,7 @@
 #include "Bullet.h"
 #include "LifeBonus.h"
 #include "WeaponBonus.h"
+#include "Bonus.h"
 #include "EnemyBossIdleAnimation.h"
 #include <list>
 

@@ -3,6 +3,7 @@
 #include "Inputs.h"
 #include "game.h"
 #include "ContentManager.h"
+#include "GameContentManager.h"
 #include "EnemyIdleAnimation.h"
 #include "Publisher.h"
 
@@ -29,6 +30,10 @@ Enemy::Enemy(const Enemy& src)
 
 bool Enemy::init(const ContentManager& contentManager)
 {
+    const GameContentManager& gameContentManager = (const GameContentManager&)contentManager;
+    const sf::SoundBuffer& sb = gameContentManager.getEnemyKilledSoundBuffer();
+    enemyKilledSound.setBuffer(sb);
+
     currentState = State::STANDARD_ENEMY;
     addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
     activate();
@@ -53,11 +58,6 @@ void Enemy::kill()
     speak();
     Publisher::notifySubscribers(Event::ENEMY_KILLED, this);
     deactivate();
-}
-
-void Enemy::loadEnemySound(const sf::SoundBuffer& soundbuffer)
-{
-    enemyKilledSound.setBuffer(soundbuffer);
 }
 
 void Enemy::speak()

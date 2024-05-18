@@ -1,7 +1,11 @@
-﻿  ProgressBar.cpp
-  Publisher.cpp
-  WeaponBonus.cpp
-  Génération de code en cours...
+﻿  Player.cpp
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         with
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         [
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:             T=float
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         ]
+  (compiler le fichier source '/Player.cpp')
+  
   Game.vcxproj -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Game.lib
   C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
   C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg

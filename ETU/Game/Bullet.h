@@ -11,6 +11,7 @@ public:
 	void initialize(const sf::Texture& texture, const sf::Vector2f& initialPosition, const sf::SoundBuffer& sb, const bool isEnemy);
 	bool update(float elapsedTime) override;
 	void activate() override;
+	void playSound();
 private:
 	sf::Sound shotSound;
 	bool isEnemy;

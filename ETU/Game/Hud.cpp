@@ -16,8 +16,8 @@ Hud::Hud()
 
 void Hud::initialize(const GameContentManager& gameContentManager)
 {
-	Publisher::addSubscriber(*this, Event::GUN_PICKED_UP);
-	Publisher::addSubscriber(*this, Event::HEALTH_PICKED_UP);
+	Publisher::addSubscriber(*this, Event::GUN_PTS_UPDATED);
+	Publisher::addSubscriber(*this, Event::HEALTH_PTS_UPDATED);
 	Publisher::addSubscriber(*this, Event::SCORE_UPDATED);
 
 	hudView = sf::View(sf::FloatRect(0, 0, (float)Game::GAME_WIDTH, (float)Game::GAME_HEIGHT));
@@ -31,7 +31,7 @@ void Hud::initialize(const GameContentManager& gameContentManager)
 	nbOfLivesText.setFont(font);
 	nbOfLivesText.setCharacterSize(16);
 	nbOfLivesText.setOutlineColor(sf::Color::White);
-	nbOfLivesText.setString(NB_LIVES + std::to_string(0));
+	nbOfLivesText.setString(NB_LIVES + std::to_string(Player::NB_INITIAL_LIVES));
 
 	bonusText.setFont(font);
 	bonusText.setCharacterSize(16);
@@ -79,23 +79,22 @@ void Hud::notify(Event event, const void* data)
 	{
 	case Event::NONE:
 		break;
-	case Event::HEALTH_PICKED_UP:
-	{
-		const Player* player = static_cast<const Player*>(data);
-		updateNbOfLiveText(player->getNbOfLives());
-		updateBonusText(player->getNbOfBonusPts());
-		break;
-	}
-	case Event::GUN_PICKED_UP:
-	{
-		const Player* player = static_cast<const Player*>(data);
-		updateBonusText(player->getNbOfBonusPts());
-		break;
-	}
 	case Event::SCORE_UPDATED:
 	{
 		const GameScene* gameScene = static_cast<const GameScene*>(data);
 		updateScoreText(gameScene->getScore());
+		break;
+	}
+	case Event::GUN_PTS_UPDATED:
+	{
+		const Player* player = static_cast<const Player*>(data);
+		updateBonusText(player->getNbOfBonusPts());
+		break;
+	}
+	case Event::HEALTH_PTS_UPDATED:
+	{
+		const Player* player = static_cast<const Player*>(data);
+		updateNbOfLiveText(player->getNbOfLives());
 		break;
 	}
 	default:

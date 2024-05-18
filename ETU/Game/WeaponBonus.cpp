@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "WeaponBonus.h"
+#include "Publisher.h"
 
 WeaponBonus::WeaponBonus()
 	: Bonus()

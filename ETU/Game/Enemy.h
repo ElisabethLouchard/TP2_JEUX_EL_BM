@@ -12,7 +12,6 @@ public:
 	virtual bool update(float deltaT, const Inputs& inputs) override;
 	virtual void onHit();
 	virtual void kill();
-	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
 	bool getShouldFireBullet() const;
 private:
 	void speak();

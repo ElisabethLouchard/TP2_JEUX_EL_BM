@@ -55,7 +55,7 @@ void Bonus::initialize(const sf::Texture& texture, const sf::Vector2f& initialPo
 	timeSinceLaunch = 0.0f;
 }
 
-void Bonus::deactivate() 
+void Bonus::deactivate()
 {
 	GameObject::deactivate();
 	soundBonus.play();

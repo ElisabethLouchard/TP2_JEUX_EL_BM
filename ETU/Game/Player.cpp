@@ -7,8 +7,10 @@
 #include "Publisher.h"
 
 const float Player::SPEED = 2.0f;
+const unsigned int Player::NB_INITIAL_LIVES = 3000;
 
 Player::Player()
+    : nbOfLives(NB_INITIAL_LIVES)
 {
 
 }
@@ -46,6 +48,14 @@ void Player::kill()
     deactivate();
 }
 
+void Player::reduceLifePts()
+{
+    if (!getHasBonus() && nbOfLives > 0) {
+        nbOfLives--;
+        Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
+    }
+}
+
 bool Player::isAlive() const
 {
     return nbOfLives != 0;
@@ -60,17 +70,22 @@ void Player::pickUpHealthBonus()
 {
     nbOfLives++;
     Publisher::notifySubscribers(Event::HEALTH_PICKED_UP, this);
+    Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
 }
 
 void Player::pickUpGunBonus()
 {
     activateBonus();
     Publisher::notifySubscribers(Event::GUN_PICKED_UP, this);
+    Publisher::notifySubscribers(Event::GUN_PTS_UPDATED, this);
 }
 
-void Player::deactivateBonus()
+void Player::reduceBonusPts()
 {
-    nbOfBonusPts = 0;
+    if (nbOfBonusPts >= 10) {
+        nbOfBonusPts -= 10;
+        Publisher::notifySubscribers(Event::GUN_PTS_UPDATED, this);
+    }
 }
 
 void Player::activateBonus()
