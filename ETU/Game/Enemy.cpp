@@ -5,16 +5,18 @@
 #include "ContentManager.h"
 #include "EnemyIdleAnimation.h"
 
-const int MAX_NB_OF_HITS = 5;
+const short Enemy::MAX_NB_OF_HITS = 1;
 
 Enemy::Enemy()
-    :isDead(false)
+    : isDead(false)
+    , nbOfHit(0)
 {
 
 }
 Enemy::Enemy(const Enemy& src)
     : AnimatedGameObject(src)
     , isDead(src.isDead)
+    , nbOfHit(src.nbOfHit)
 {
     init(*contentManager);
 
@@ -27,7 +29,6 @@ Enemy::Enemy(const Enemy& src)
 
 bool Enemy::init(const ContentManager& contentManager)
 {
-    setScale(1, 0.5);
     isDead = false;
     currentState = State::STANDARD_ENEMY;
     addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
@@ -38,31 +39,14 @@ bool Enemy::init(const ContentManager& contentManager)
 
 bool Enemy::update(float deltaT, const Inputs& inputs)
 {
-    /*if (isDead)
-        if (!isExploding) {
-            isExploding = true;
-            explosionTimer.restart();
-        }
-    
-    if (nbOfHit == MAX_NB_OF_HITS)
-        onDying();
-
-    if (isExploding && explosionTimer.getElapsedTime().asSeconds() >= 1.0f) {
-        respawnTimer.restart();
-        return true;
-    }
-    move(sf::Vector2f(0, 5));
-
-    if (getPosition().y > Game::GAME_HEIGHT)
-        setPosition(sf::Vector2f(getPosition().x, 0.0f));*/
-
-    //return true;
     return AnimatedGameObject::update(deltaT, inputs);
 }
 
 void Enemy::onHit()
 {
     nbOfHit++;
+    if (nbOfHit >= MAX_NB_OF_HITS)
+        onDying();
 }
 
 void Enemy::onDying()
@@ -70,7 +54,6 @@ void Enemy::onDying()
     isDead = true;
     speak();
     deactivate();
-    currentState = State::EXPLODING;
 }
 
 void Enemy::loadEnemySound(const sf::SoundBuffer& soundbuffer)
@@ -83,7 +66,7 @@ void Enemy::speak()
     enemyKilledSound.play();
 }
 
-bool Enemy::isAlive() 
+bool Enemy::isAlive() const
 {
     return !isDead;
 }

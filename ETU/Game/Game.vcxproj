@@ -166,7 +166,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyBossIdleAnimation.h" />
-    <ClInclude Include="EnemyExplosionAnimation.h" />
     <ClInclude Include="EnemyIdleAnimation.h" />
     <ClInclude Include="EnemyRegular.h" />
     <ClInclude Include="Event.h" />
@@ -205,7 +204,6 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyBossIdleAnimation.cpp" />
-    <ClCompile Include="EnemyExplosionAnimation.cpp" />
     <ClCompile Include="EnemyIdleAnimation.cpp" />
     <ClCompile Include="EnemyRegular.cpp" />
     <ClCompile Include="game.cpp" />

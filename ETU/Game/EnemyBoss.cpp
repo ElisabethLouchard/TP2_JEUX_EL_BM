@@ -24,7 +24,6 @@ bool EnemyBoss::init(const ContentManager& contentManager)
     bool returnValue = Enemy::init(contentManager);
     currentState = State::BOSS;
     addAnimation<State::BOSS, EnemyBossIdleAnimation>(contentManager);
-    addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
     return returnValue;
 }

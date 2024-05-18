@@ -28,6 +28,12 @@ Bonus& Bonus::operator=(const Bonus& rhs)
 bool Bonus::update(float elapsedTime)
 {
 	move(sf::Vector2f(0, 5));
+	if (getScale() == sf::Vector2f(4,4)) {
+		setScale(5, 5);
+	}
+	else {
+		setScale(4, 4);
+	}
 	return true;
 }
 

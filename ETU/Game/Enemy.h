@@ -4,6 +4,8 @@ class Enemy :
 	public AnimatedGameObject
 {
 public:
+	static const short MAX_NB_OF_HITS;
+
 	Enemy();
 	Enemy(const Enemy& src);
 	virtual bool init(const ContentManager& contentManager) override;
@@ -11,14 +13,11 @@ public:
 	virtual void onHit();
 	virtual void onDying();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
-	bool isAlive();
+	bool isAlive() const;
 private:
 	void speak();
 	bool isDead;
-	bool isExploding = false;
-	int nbOfHit = 0;
+	int nbOfHit;
 	sf::Sound enemyKilledSound;
-	sf::Clock explosionTimer;
-	sf::Clock respawnTimer;
 };
 

@@ -23,7 +23,6 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TitleContentManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="EnemyExplosionAnimation.cpp" />
     <ClCompile Include="EnemyIdleAnimation.cpp" />
     <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="LifeBonus.cpp" />
@@ -64,7 +63,6 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TitleContentManager.h" />
     <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="EnemyExplosionAnimation.h" />
     <ClInclude Include="EnemyIdleAnimation.h" />
     <ClInclude Include="Bonus.h" />
     <ClInclude Include="LifeBonus.h" />

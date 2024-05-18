@@ -17,6 +17,7 @@ class GameScene :
 public:
     static const unsigned int MAX_RECOIL;
     static const float TIME_BETWEEN_FIRE;
+    static const float BONUS_SPAWN_CHANCE;
     static const float TIME_PER_FRAME;
     static const unsigned int NB_BULLETS;
 
