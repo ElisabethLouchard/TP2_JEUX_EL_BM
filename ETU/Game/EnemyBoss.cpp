@@ -19,7 +19,7 @@ EnemyBoss::EnemyBoss(const EnemyBoss& src)
 
 bool EnemyBoss::init(const ContentManager& contentManager)
 {
-    setPosition(Game::GAME_WIDTH / 2, Game::GAME_HEIGHT / 2);
+    setPosition(Game::GAME_WIDTH / 2, 0.0f);
     currentState = State::BOSS;
     addAnimation<State::BOSS, EnemyBossIdleAnimation>(contentManager);
     addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);

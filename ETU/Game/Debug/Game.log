@@ -1,6 +1,4 @@
-﻿  EnemyBoss.cpp
-C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(22,57): warning C4244: 'argument' : conversion de 'unsigned int' en 'float', perte possible de données
-C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(22,34): warning C4244: 'argument' : conversion de 'unsigned int' en 'float', perte possible de données
+﻿  GameScene.cpp
   Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg

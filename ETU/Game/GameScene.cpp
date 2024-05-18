@@ -32,11 +32,11 @@ SceneType GameScene::update()
 	boss.setDestination(player.getPosition());
 	boss.update(TIME_PER_FRAME, inputs);
 
-	/*for (EnemyRegular& e : enemies)
+	for (EnemyRegular& e : enemies)
 	{
 		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
-	}*/
+	}
 
     for (Bullet& b : playerBullets)
     {
