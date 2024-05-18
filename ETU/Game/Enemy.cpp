@@ -3,7 +3,6 @@
 #include "Inputs.h"
 #include "game.h"
 #include "ContentManager.h"
-#include "EnemyIdleAnimation.h"
 
 const int MAX_NB_OF_HITS = 5;
 
@@ -30,10 +29,6 @@ bool Enemy::init(const ContentManager& contentManager)
     isDead = false;
 
     activate();
-
-    currentState = State::STANDARD_ENEMY;
-    addAnimation<State::STANDARD_ENEMY,EnemyIdleAnimation>(contentManager);
-    addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
     return AnimatedGameObject::init(contentManager);
 }
@@ -70,7 +65,6 @@ void Enemy::onHit()
 void Enemy::onDying()
 {
     isDead = true;
-    currentState = State::EXPLODING;
     speak();
     deactivate();
 }

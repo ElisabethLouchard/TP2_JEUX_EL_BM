@@ -2,7 +2,8 @@
 #include "Scene.h"
 #include "Inputs.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "EnemyRegular.h"
+#include "EnemyBoss.h"
 #include "GameContentManager.h"
 #include "Hud.h"
 #include "Bullet.h"
@@ -38,7 +39,8 @@ private:
     void fireBullet(const GameObject& object, const bool isEnemy);
     void initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy);
     GameContentManager gameContentManager;
-    std::list<Enemy> enemies;
+    EnemyBoss boss;
+    std::list<EnemyRegular> enemies;
     std::list<LifeBonus> listLifeBonus;
     std::list<WeaponBonus> listWeaponBonus;
     sf::Texture gameBackgroundTexture;

@@ -30,7 +30,7 @@ SceneType GameScene::update()
 	recoil = std::max(0, recoil - 1);
 	player.update(TIME_PER_FRAME, inputs);
 
-	for (Enemy& e : enemies)
+	for (EnemyRegular& e : enemies)
 	{
 		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
@@ -57,7 +57,7 @@ SceneType GameScene::update()
 
     timeSinceLastFire += TIME_PER_FRAME;
 
-	for (Enemy& e : enemies)
+	for (EnemyRegular& e : enemies)
 	{
 		for (Bullet& b : playerBullets)
 		{
@@ -138,7 +138,7 @@ void GameScene::draw(sf::RenderWindow& window) const
 		b.draw(window);
 	for (const WeaponBonus& b : listWeaponBonus)
 		b.draw(window);
-	for (const Enemy& e : enemies)
+	for (const EnemyRegular& e : enemies)
 		e.draw(window);
 
 	hud.draw(window);
@@ -155,7 +155,7 @@ bool GameScene::init()
 	hud.initialize(gameContentManager);
 	for (int i = 0; i < 20; i++)
 	{
-		Enemy enemy;
+		EnemyRegular enemy;
 		enemy.init(gameContentManager);
 		enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 10.0f, -50.0f * (float)(rand() % 100)));
 		enemies.push_back(enemy);
