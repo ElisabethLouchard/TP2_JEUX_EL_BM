@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/System/Vector2.hpp>
 #include "Enemy.h"
 class EnemyBoss : public Enemy
 {
@@ -9,5 +10,8 @@ public:
     bool update(float deltaT, const Inputs& inputs) override;
     void onHit() override;
     void onDying() override;
+    void setDestination(const sf::Vector2f& dest);
+private:
+    float moveAngle;
 };
 

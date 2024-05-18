@@ -29,12 +29,14 @@ SceneType GameScene::update()
 	SceneType retval = getSceneType();
 	recoil = std::max(0, recoil - 1);
 	player.update(TIME_PER_FRAME, inputs);
+	boss.setDestination(player.getPosition());
+	boss.update(TIME_PER_FRAME, inputs);
 
-	for (EnemyRegular& e : enemies)
+	/*for (EnemyRegular& e : enemies)
 	{
 		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
-	}
+	}*/
 
     for (Bullet& b : playerBullets)
     {
@@ -140,6 +142,7 @@ void GameScene::draw(sf::RenderWindow& window) const
 		b.draw(window);
 	for (const EnemyRegular& e : enemies)
 		e.draw(window);
+	boss.draw(window);
 
 	hud.draw(window);
 }
@@ -161,6 +164,8 @@ bool GameScene::init()
 		enemies.push_back(enemy);
 		enemy.loadEnemySound(gameContentManager.getEnemyKilledSoundBuffer());
 	}
+
+	boss.init(gameContentManager);
 
 	for (int i = 0; i < 10; i++)
 	{
