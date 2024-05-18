@@ -7,7 +7,6 @@ const float EnemyBossIdleAnimation::ANIMATION_LENGTH = 2.0f;
 
 EnemyBossIdleAnimation::EnemyBossIdleAnimation(sf::Sprite& s) : CyclicAnimation(s, ANIMATION_LENGTH, true)
 {
-
 }
 
 bool EnemyBossIdleAnimation::init(const ContentManager& contentManager)
@@ -22,4 +21,3 @@ bool EnemyBossIdleAnimation::init(const ContentManager& contentManager)
 	frames.push_back(AnimationFrame(texture, sf::IntRect(522, 1905, 72, 147)));
 	return true;
 }
-

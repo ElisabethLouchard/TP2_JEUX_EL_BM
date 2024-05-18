@@ -9,6 +9,7 @@
 #include "Bullet.h"
 #include "LifeBonus.h"
 #include "WeaponBonus.h"
+#include "EnemyBossIdleAnimation.h"
 #include <list>
 
 class GameScene :
