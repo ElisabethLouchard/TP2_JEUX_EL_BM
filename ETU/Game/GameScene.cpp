@@ -31,6 +31,11 @@ SceneType GameScene::update()
 	boss.setDestination(player.getPosition());
 	boss.update(TIME_PER_FRAME, inputs);
 
+	if (boss.getShouldFireBullet())
+	{
+		fireBullet(boss, true);
+	}
+
 	for (EnemyRegular& e : enemies)
 	{
 		if (e.update(TIME_PER_FRAME, inputs))

@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics/Sprite.hpp>
 #include "CyclicAnimation.h"
 class EnemyBossIdleAnimation : public CyclicAnimation
 {
