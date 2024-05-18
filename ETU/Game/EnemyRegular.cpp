@@ -12,17 +12,13 @@ EnemyRegular::EnemyRegular()
 EnemyRegular::EnemyRegular(const EnemyRegular& src)
     : Enemy(src)
 {
-    currentState = src.currentState;
-    animations = src.animations;
 }
 
 bool EnemyRegular::init(const ContentManager& contentManager)
 {
-    currentState = State::STANDARD_ENEMY;
-    addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
-    addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
+    bool returnValue = Enemy::init(contentManager);
 
-    return Enemy::init(contentManager);
+    return returnValue;
 }
 
 bool EnemyRegular::update(float deltaT, const Inputs& inputs)

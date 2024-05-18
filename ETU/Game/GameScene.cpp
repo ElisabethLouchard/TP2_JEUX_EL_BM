@@ -166,6 +166,7 @@ bool GameScene::init()
 	}
 
 	boss.init(gameContentManager);
+	boss.setPosition(Game::GAME_WIDTH / 2, 0.0f);
 
 	for (int i = 0; i < 10; i++)
 	{
