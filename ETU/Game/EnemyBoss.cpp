@@ -9,22 +9,23 @@ const float MOVE_SPEED_Y = 5.0f;
 
 EnemyBoss::EnemyBoss()
     : Enemy()
+    , moveAngle(0)
 {
 }
 
 EnemyBoss::EnemyBoss(const EnemyBoss& src)
     : Enemy(src)
+    , moveAngle(src.moveAngle)
 {
 }
 
 bool EnemyBoss::init(const ContentManager& contentManager)
 {
-    setPosition(Game::GAME_WIDTH / 2, 0.0f);
+    bool returnValue = Enemy::init(contentManager);
     currentState = State::BOSS;
     addAnimation<State::BOSS, EnemyBossIdleAnimation>(contentManager);
-    addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
-    return Enemy::init(contentManager);
+    return returnValue;
 }
 
 bool EnemyBoss::update(float deltaT, const Inputs& inputs)

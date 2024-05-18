@@ -5,8 +5,7 @@
 #include "random.h"
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
-const float spawnInterval = 0.01f;
-const float BONUS_SPAWN_CHANCE = 0.5f;
+const float GameScene::BONUS_SPAWN_CHANCE = 1.0f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 15;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
@@ -37,11 +36,11 @@ SceneType GameScene::update()
 		fireBullet(boss, true);
 	}
 
-	/*for (EnemyRegular& e : enemies)
+	for (EnemyRegular& e : enemies)
 	{
 		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
-	}*/
+	}
 
     for (Bullet& b : playerBullets)
     {
@@ -80,8 +79,8 @@ SceneType GameScene::update()
 		}
 		if (player.collidesWith(e))
 		{
-			spawnBonus(e.getPosition());
 			e.onDying();
+			spawnBonus(e.getPosition());
 		}
 	}
 
@@ -171,6 +170,7 @@ bool GameScene::init()
 	}
 
 	boss.init(gameContentManager);
+	boss.setPosition(Game::GAME_WIDTH / 2.0f, 0.0f);
 
 	for (int i = 0; i < 10; i++)
 	{
