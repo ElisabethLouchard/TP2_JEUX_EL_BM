@@ -31,6 +31,7 @@
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyRegular.cpp" />
     <ClCompile Include="EnemyBossIdleAnimation.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -71,6 +72,7 @@
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyRegular.h" />
     <ClInclude Include="EnemyBossIdleAnimation.h" />
+    <ClInclude Include="ProgressBar.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

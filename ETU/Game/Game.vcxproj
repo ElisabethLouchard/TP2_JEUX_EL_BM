@@ -178,6 +178,7 @@
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="LifeBonus.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="SceneResult.h" />
     <ClInclude Include="LinearAnimation.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="LinearAnimation.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="random.cpp" />
     <ClCompile Include="Scene.cpp" />

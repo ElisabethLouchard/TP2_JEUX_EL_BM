@@ -23,7 +23,11 @@ bool EnemyBoss::init(const ContentManager& contentManager)
 {
     bool returnValue = Enemy::init(contentManager);
     currentState = State::BOSS;
+
     addAnimation<State::BOSS, EnemyBossIdleAnimation>(contentManager);
+
+    healthBar.init(200, 20, currentHealth);
+    healthBar.setPosition(getPosition().x, getPosition().y - 10);
 
     return returnValue;
 }
@@ -36,18 +40,38 @@ bool EnemyBoss::update(float deltaT, const Inputs& inputs)
     if (animations[State::BOSS]->getPercentage() == 0.5) {
         shouldFireBullets = true;
     }
+
+    if (currentHealth == 0)
+    {
+        onDying();
+    }
+
+    healthBar.setPosition(getPosition().x, getPosition().y - 10);
     return returnValue;
+}
+
+void EnemyBoss::draw(sf::RenderWindow& window) const 
+{
+    Enemy::draw(window);
+    healthBar.draw(window);
 }
 
 void EnemyBoss::onHit()
 {
     Enemy::onHit();
-    currentState = State::EXPLODING;
+    currentHealth--;
+    healthBar.setCurrentValue(currentHealth);
 }
 
 void EnemyBoss::onDying()
 {
     Enemy::onDying();
+}
+
+void EnemyBoss::activate() 
+{
+    Enemy::activate();
+    healthBar.activate();
 }
 
 void EnemyBoss::setDestination(const sf::Vector2f& dest)

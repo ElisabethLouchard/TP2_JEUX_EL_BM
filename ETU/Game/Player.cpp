@@ -42,6 +42,7 @@ void Player::adjustCrossingViewLimits()
 void Player::kill()
 {
     isDead = true;
+    deactivate();
 }
 
 bool Player::isAlive() const

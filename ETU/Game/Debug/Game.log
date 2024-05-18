@@ -1,4 +1,7 @@
-﻿  GameScene.cpp
+﻿  EnemyBoss.cpp
+C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(29,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(63,31): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  GameScene.cpp
   game.cpp
   Génération de code en cours...
   Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib

@@ -9,7 +9,7 @@ const float GameScene::BONUS_SPAWN_CHANCE = 1.0f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
-const unsigned int GameScene::NB_ENEMIES = 20;
+const unsigned int GameScene::NB_ENEMIES = 2;
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
 {
@@ -129,6 +129,11 @@ SceneType GameScene::update()
 	{
 		boss.setDestination(player.getPosition());
 		boss.update(TIME_PER_FRAME, inputs);
+	}
+
+	if (boss.isActive() && boss.collidesWith(player)) 
+	{
+		player.kill();
 	}
 
 	if (hasTransition)
