@@ -31,6 +31,7 @@
     <ClCompile Include="random.cpp" />
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyRegular.cpp" />
+    <ClCompile Include="EnemyBossIdleAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -71,6 +72,7 @@
     <ClInclude Include="random.h" />
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyRegular.h" />
+    <ClInclude Include="EnemyBossIdleAnimation.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

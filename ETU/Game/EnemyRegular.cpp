@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "EnemyRegular.h"
 #include "ContentManager.h"
+#include "EnemyIdleAnimation.h"
 
 EnemyRegular::EnemyRegular()
     : Enemy()
@@ -16,6 +17,10 @@ bool EnemyRegular::init(const ContentManager& contentManager)
 {
     if (!Enemy::init(contentManager))
         return false;
+
+    currentState = State::STANDARD_ENEMY;
+    addAnimation<State::STANDARD_ENEMY, EnemyIdleAnimation>(contentManager);
+    addAnimation<State::EXPLODING, EnemyExplosionAnimation>(contentManager);
 
     return true;
 }
