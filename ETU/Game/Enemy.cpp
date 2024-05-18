@@ -10,12 +10,13 @@ const short Enemy::MAX_NB_OF_HITS = 5;
 
 Enemy::Enemy()
     : nbOfHit(0)
+    , shouldFireBullets(false)
 {
-
 }
 Enemy::Enemy(const Enemy& src)
     : AnimatedGameObject(src)
     , nbOfHit(src.nbOfHit)
+    , shouldFireBullets(src.shouldFireBullets)
 {
     init(*contentManager);
 
@@ -62,4 +63,9 @@ void Enemy::loadEnemySound(const sf::SoundBuffer& soundbuffer)
 void Enemy::speak()
 {
     enemyKilledSound.play();
+}
+
+bool Enemy::getShouldFireBullet() const
+{
+    return shouldFireBullets;
 }

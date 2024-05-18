@@ -30,9 +30,13 @@
     <ClCompile Include="EnemyBoss.cpp" />
     <ClCompile Include="EnemyRegular.cpp" />
     <ClCompile Include="EnemyBossIdleAnimation.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Publisher.cpp">
       <Filter>PubSub</Filter>
     </ClCompile>
+=======
+    <ClCompile Include="ProgressBar.cpp" />
+>>>>>>> ennemi2
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -71,12 +75,16 @@
     <ClInclude Include="EnemyBoss.h" />
     <ClInclude Include="EnemyRegular.h" />
     <ClInclude Include="EnemyBossIdleAnimation.h" />
+<<<<<<< HEAD
     <ClInclude Include="Subscriber.h">
       <Filter>PubSub</Filter>
     </ClInclude>
     <ClInclude Include="Publisher.h">
       <Filter>PubSub</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="ProgressBar.h" />
+>>>>>>> ennemi2
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

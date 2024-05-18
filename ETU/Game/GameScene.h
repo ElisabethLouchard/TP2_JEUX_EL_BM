@@ -22,6 +22,7 @@ public:
     static const float BONUS_SPAWN_CHANCE;
     static const float TIME_PER_FRAME;
     static const unsigned int NB_BULLETS;
+    static const unsigned int NB_ENEMIES;
 
     // Héritées via Scene
     GameScene();
@@ -56,5 +57,6 @@ private:
     std::list<Bullet> enemyBullets;
     float timeSinceLastFire;
     float timeSinceLastSpawn;
+    int nbOfEnemyDeaths;
 };
 

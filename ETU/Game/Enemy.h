@@ -13,9 +13,13 @@ public:
 	virtual void onHit();
 	virtual void kill();
 	void loadEnemySound(const sf::SoundBuffer& soundbuffer);
+	bool getShouldFireBullet() const;
 private:
 	void speak();
 	int nbOfHit;
 	sf::Sound enemyKilledSound;
+	float initialDelay;
+protected:
+	bool shouldFireBullets;
 };
 

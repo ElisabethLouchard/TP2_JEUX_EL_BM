@@ -9,9 +9,9 @@
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
 const float GameScene::BONUS_SPAWN_CHANCE = 0.6f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
-const unsigned int GameScene::NB_BULLETS = 15;
+const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 25; // 0.5s
-
+const unsigned int GameScene::NB_ENEMIES = 20;
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
 	, timeSinceLastFire(0)
@@ -32,8 +32,6 @@ SceneType GameScene::update()
 	SceneType retval = getSceneType();
 	recoil = std::max(0, recoil - 1);
 	player.update(TIME_PER_FRAME, inputs);
-	boss.setDestination(player.getPosition());
-	boss.update(TIME_PER_FRAME, inputs);
 
 	if (boss.getShouldFireBullet())
 	{
@@ -42,6 +40,10 @@ SceneType GameScene::update()
 
 	for (EnemyRegular& e : enemies)
 	{
+		if (e.getShouldFireBullet() && e.isActive())
+		{
+			fireBullet(e, true);
+		}
 		if (e.update(TIME_PER_FRAME, inputs))
 			e.deactivate();
 	}
@@ -119,6 +121,17 @@ SceneType GameScene::update()
 
 	timeSinceLastFire += TIME_PER_FRAME;
 
+	if (nbOfEnemyDeaths == NB_ENEMIES)
+	{
+		boss.setDestination(player.getPosition());
+		boss.update(TIME_PER_FRAME, inputs);
+	}
+
+	if (boss.isActive() && boss.collidesWith(player)) 
+	{
+		player.kill();
+	}
+
 	if (hasTransition)
 	{
 		pause();
@@ -160,17 +173,17 @@ bool GameScene::init()
 	}
 	gameBackground.setTexture(gameContentManager.getBackgroundTexture());
 	hud.initialize(gameContentManager);
-	for (int i = 0; i < 20; i++)
+	int random = 0;
+	for (int i = 0; i < NB_ENEMIES; i++)
 	{
 		EnemyRegular enemy;
 		enemy.init(gameContentManager);
-		enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 10.0f, -50.0f * (float)(rand() % 100)));
+		enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 20.0f, -50.0f * (float)(rand() % 100)));
 		enemies.push_back(enemy);
 		enemy.loadEnemySound(gameContentManager.getEnemyKilledSoundBuffer());
 	}
 
 	boss.init(gameContentManager);
-	boss.setPosition(Game::GAME_WIDTH / 2.0f, 0.0f);
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -247,6 +260,8 @@ void GameScene::fireBullet(const GameObject& object, bool isEnemy)
 
 void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
 {
+	nbOfEnemyDeaths++;
+
 	Random randomGenerator;
 
 	double randomValue = randomGenerator.nextDouble();
