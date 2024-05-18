@@ -23,6 +23,7 @@ Enemy::Enemy(const Enemy& src)
     else
         deactivate();
 }
+
 bool Enemy::init(const ContentManager& contentManager)
 {
     setScale(1, 0.5);
@@ -35,7 +36,7 @@ bool Enemy::init(const ContentManager& contentManager)
 
 bool Enemy::update(float deltaT, const Inputs& inputs)
 {
-    if (isDead)
+    /*if (isDead)
         if (!isExploding) {
             isExploding = true;
             explosionTimer.restart();
@@ -51,9 +52,9 @@ bool Enemy::update(float deltaT, const Inputs& inputs)
     move(sf::Vector2f(0, 5));
 
     if (getPosition().y > Game::GAME_HEIGHT)
-        setPosition(sf::Vector2f(getPosition().x, 0.0f));
+        setPosition(sf::Vector2f(getPosition().x, 0.0f));*/
 
-
+    //return true;
     return AnimatedGameObject::update(deltaT, inputs);
 }
 
