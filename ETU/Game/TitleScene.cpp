@@ -65,6 +65,15 @@ bool TitleScene::handleEvents(sf::RenderWindow& window)
   sf::Event event;
   while (window.pollEvent(event))
   {
+    if (sf::Joystick::isConnected(0)) 
+    {
+        const unsigned int buttonCount = sf::Joystick::getButtonCount(0);
+        for (unsigned int i = 0; i < buttonCount; ++i) {
+            if (sf::Joystick::isButtonPressed(0, i)) {
+                return true;
+            }
+        }
+    }
     //x sur la fenêtre
     if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
     {

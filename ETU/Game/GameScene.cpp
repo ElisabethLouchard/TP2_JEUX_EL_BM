@@ -228,6 +228,17 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
+		if (sf::Joystick::isConnected(0)) {
+			float x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+			float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+
+			inputs.moveFactorX += (std::abs(x) > 15) ? x / 100.0f * 3.0f : 0.0f;
+			inputs.moveFactorY += (std::abs(y) > 15) ? y / 100.0f * 3.0f : 0.0f;
+
+			if (sf::Joystick::isButtonPressed(0, 0)) {
+				retval = true;
+			}
+		}
 		//x sur la fenêtre
 		if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
 		{
