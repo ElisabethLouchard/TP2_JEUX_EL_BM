@@ -8,6 +8,8 @@ class Player :
 public:
     static const float SPEED;
     static const unsigned int NB_INITIAL_LIVES;
+    static const float PLAYER_INVINCIBILITY_DURATION;
+    static const sf::Color RESET_COLOR;
 
     Player();
     virtual bool init(const ContentManager& contentManager) override;
@@ -24,6 +26,10 @@ public:
     unsigned int getNbOfLives() const;
     unsigned int getNbOfBonusPts() const;
 private:
+    void updateTimeBeforeRevive(float elapsedTime);
+    void revive();
+    float invincibilityTimer;
     unsigned int nbOfLives;
-    unsigned int nbOfBonusPts = 0;
+    unsigned int nbOfBonusPts;
+    bool isInvincible;
 };

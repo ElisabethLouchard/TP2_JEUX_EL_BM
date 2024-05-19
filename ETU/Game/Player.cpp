@@ -8,9 +8,13 @@
 
 const float Player::SPEED = 2.0f;
 const unsigned int Player::NB_INITIAL_LIVES = 3000;
+const float Player::PLAYER_INVINCIBILITY_DURATION = 3.0f;
+const sf::Color Player::RESET_COLOR = sf::Color::White;
 
 Player::Player()
     : nbOfLives(NB_INITIAL_LIVES)
+    , isInvincible(false)
+    , nbOfBonusPts(0)
 {
 
 }
@@ -31,6 +35,7 @@ bool Player::update(float deltaT, const Inputs& inputs)
 {
     move(sf::Vector2f(-inputs.moveFactorX * SPEED, -inputs.moveFactorY * SPEED));
     adjustCrossingViewLimits();
+    updateTimeBeforeRevive(deltaT);
     return AnimatedGameObject::update(deltaT, inputs);
 }
 
@@ -50,8 +55,10 @@ void Player::kill()
 
 void Player::reduceLifePts()
 {
-    if (!getHasBonus() && nbOfLives > 0) {
+    if (!getHasBonus() && nbOfLives > 0 && !isInvincible) {
         nbOfLives--;
+        isInvincible = true;
+        invincibilityTimer = 0;
         Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
     }
 }
@@ -68,7 +75,7 @@ bool Player::getHasBonus() const
 
 void Player::pickUpHealthBonus()
 {
-    nbOfLives++;
+    nbOfLives+=100;
     Publisher::notifySubscribers(Event::HEALTH_PICKED_UP, this);
     Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
 }
@@ -82,7 +89,7 @@ void Player::pickUpGunBonus()
 
 void Player::reduceBonusPts()
 {
-    if (nbOfBonusPts >= 10) {
+    if (nbOfBonusPts >= 10 && !isInvincible) {
         nbOfBonusPts -= 10;
         Publisher::notifySubscribers(Event::GUN_PTS_UPDATED, this);
     }
@@ -101,4 +108,25 @@ unsigned int Player::getNbOfLives() const
 unsigned int Player::getNbOfBonusPts() const
 {
     return nbOfBonusPts;
+}
+
+void Player::updateTimeBeforeRevive(float elapsedTime) {
+    if (isInvincible) {
+        invincibilityTimer += elapsedTime;
+        if (invincibilityTimer >= PLAYER_INVINCIBILITY_DURATION) {
+            revive();
+        }
+        else {
+            float transparency = invincibilityTimer / PLAYER_INVINCIBILITY_DURATION * 255;
+            sf::Color color = RESET_COLOR;
+            color.a = transparency;
+            setColor(color);
+        }
+    }
+}
+
+void Player::revive() {
+    if (isInvincible) {
+        isInvincible = false;
+    }
 }

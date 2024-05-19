@@ -82,6 +82,7 @@ SceneType GameScene::update()
 		if (player.collidesWith(e))
 		{
 			e.kill();
+			player.reduceLifePts();
 		}
 	}
 

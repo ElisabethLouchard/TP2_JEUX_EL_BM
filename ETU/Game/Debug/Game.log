@@ -1,9 +1,12 @@
 ﻿  Player.cpp
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         with
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         [
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:             T=float
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(21,73): warning C4244:         ]
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         with
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         [
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:             T=float
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         ]
+  (compiler le fichier source '/Player.cpp')
+  
+C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(122,23): warning C4244: '=' : conversion de 'float' en 'sf::Uint8', perte possible de données
   (compiler le fichier source '/Player.cpp')
   
   Game.vcxproj -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Game.lib
