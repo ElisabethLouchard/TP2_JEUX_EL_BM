@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "ContentManager.h"
+#include "ScoreContentManager.h"
 class ScoreScene :
     public Scene
 {
@@ -14,8 +15,12 @@ public:
     virtual bool uninit() override;
     virtual bool handleEvents(sf::RenderWindow& window) override;
 private:
-    sf::Texture menuImageTexture;
-    sf::Sprite menuImage;
+    ScoreContentManager scoreContentManager;
+    sf::Texture scoreBackgroundTexture;
+    sf::Sprite scoreBackground;
+    sf::Text title;
+    sf::Text subtitle;
+    sf::Text instructions;
     bool hasTransition = false;
 };
 

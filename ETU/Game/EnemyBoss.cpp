@@ -76,3 +76,8 @@ void EnemyBoss::setDestination(const sf::Vector2f& dest)
 {
     moveAngle = atan2f((dest.y - getPosition().y), (dest.x - getPosition().x));
 }
+
+bool EnemyBoss::isAlive() const
+{
+    return currentHealth > 0;
+}

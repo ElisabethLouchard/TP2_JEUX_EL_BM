@@ -11,7 +11,8 @@ const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
-const unsigned int GameScene::NB_ENEMIES = 20;
+const unsigned int GameScene::NB_ENEMIES = 1;
+SceneResult GameScene::scoreFinal;
 
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
@@ -132,8 +133,6 @@ SceneType GameScene::update()
 		}
 	}
 
-	timeSinceLastFire += TIME_PER_FRAME;
-
 	if (nbOfEnemyDeaths == NB_ENEMIES)
 	{
 		boss.setDestination(player.getPosition());
@@ -144,10 +143,15 @@ SceneType GameScene::update()
 	{
 		player.kill();
 	}
-
-	if (hasTransition)
-	{
-		pause();
+	
+	timeSinceLastFire += TIME_PER_FRAME;
+	// !player.isAlive() || !boss.isAlive()
+	if (true) {
+ 		if (hasScoreSceneBeenDisplayed) {
+			return SceneType::NONE;
+		}
+		scoreFinal.gameSceneResult.score = score;
+		hasScoreSceneBeenDisplayed = true;
 		return SceneType::SCORE_SCENE;
 	}
 

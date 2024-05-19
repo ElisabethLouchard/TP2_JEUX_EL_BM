@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ScoreScene.h"
-
 #include "game.h"
 
 ScoreScene::ScoreScene()
@@ -20,7 +19,7 @@ SceneType ScoreScene::update()
     if (hasTransition)
     {
         pause();
-        return SceneType::SCORE_SCENE;
+        return SceneType::TITLE_SCENE;
     }
 
     return retval;
@@ -28,25 +27,39 @@ SceneType ScoreScene::update()
 
 void ScoreScene::draw(sf::RenderWindow& window) const
 {
-    window.draw(menuImage);
+    window.draw(scoreBackground);
+    window.draw(title);
+    window.draw(subtitle);
+    window.draw(instructions);
 }
 
 bool ScoreScene::init()
 {
-    /*if (titleContentManager.loadContent() == false)
+    if (scoreContentManager.loadContent() == false)
     {
         return false;
-    }*/
-    menuImage.setTexture(menuImageTexture);
-    menuImage.setOrigin(menuImage.getTexture()->getSize().x / 2.0f, menuImage.getTexture()->getSize().y / 2.0f);
-    menuImage.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 2.0f);
-    /*instructions.setFont(titleContentManager.getFont());
-    instructions.setString("Press any key to start");
-    instructions.setCharacterSize(30);
-    instructions.setPosition(Game::GAME_WIDTH / 2.0f - instructions.getGlobalBounds().width / 2.0f,
-        Game::GAME_HEIGHT / 2 + (menuImage.getGlobalBounds().height / 2.0f) + 20);*/
-        //gameMusic.setBuffer(titleContentManager.getGameMusicSoundBuffer());
-    return true;
+    }
+    scoreBackground.setTexture(scoreContentManager.getBackgroundTexture());
+
+    title.setFont(scoreContentManager.getFont());
+    title.setString("GAME OVER");
+    title.setCharacterSize(60);
+    title.setFillColor(sf::Color::Red);
+    title.setOrigin(title.getGlobalBounds().width / 2.0f, title.getGlobalBounds().height / 2.0f);
+    title.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT / 9.0f);
+
+    subtitle.setFont(scoreContentManager.getFont());
+    subtitle.setString("LEADERBOARD");
+    subtitle.setCharacterSize(40);
+    subtitle.setOrigin(subtitle.getGlobalBounds().width / 2.0f, subtitle.getGlobalBounds().height / 2.0f);
+    subtitle.setPosition(Game::GAME_WIDTH / 2.0f, title.getPosition().y + title.getGlobalBounds().height + subtitle.getGlobalBounds().height);
+
+    instructions.setFont(scoreContentManager.getFont());
+    instructions.setString("PRESS ESC TO QUIT");
+    instructions.setCharacterSize(25);
+    instructions.setOrigin(instructions.getGlobalBounds().width / 2.0f, instructions.getGlobalBounds().height / 2.0f);
+    instructions.setPosition(Game::GAME_WIDTH / 2.0f, Game::GAME_HEIGHT - (Game::GAME_HEIGHT / 9.0f));
+     return true;
 }
 
 bool ScoreScene::uninit()
@@ -68,7 +81,7 @@ bool ScoreScene::handleEvents(sf::RenderWindow& window)
         }
         if (event.type == sf::Event::KeyPressed) {
 
-            hasTransition = true;
+            // Écrire nom
         }
     }
     return retval;

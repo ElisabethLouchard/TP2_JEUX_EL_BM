@@ -14,6 +14,7 @@ public:
     void draw(sf::RenderWindow& window) const override;
     void activate() override;
     void setDestination(const sf::Vector2f& dest);
+    bool isAlive() const;
 private:
     float moveAngle;
     ProgressBar healthBar;
