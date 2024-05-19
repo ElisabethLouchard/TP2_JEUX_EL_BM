@@ -19,7 +19,7 @@ SceneType TitleScene::update()
 
     if (hasTransition)
     {
-        pause();
+        hasTransition = false;
         return SceneType::GAME_SCENE;
     }
 
@@ -45,7 +45,7 @@ bool TitleScene::init()
     instructions.setString("Press any key to start");
     instructions.setCharacterSize(30);
     instructions.setPosition(Game::GAME_WIDTH / 2.0f - instructions.getGlobalBounds().width / 2.0f,
-        Game::GAME_HEIGHT / 2 + (menuImage.getGlobalBounds().height / 2.0f) + 20);
+        Game::GAME_HEIGHT / 2.0f + (menuImage.getGlobalBounds().height / 2.0f) + 20);
     if (!gameMusic.openFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
     {
         return false;

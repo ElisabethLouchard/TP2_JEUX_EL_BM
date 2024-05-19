@@ -11,7 +11,7 @@ const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
-const unsigned int GameScene::NB_ENEMIES = 1;
+const unsigned int GameScene::NB_ENEMIES = 20;
 SceneResult GameScene::scoreFinal;
 
 GameScene::GameScene()
@@ -139,22 +139,21 @@ SceneType GameScene::update()
 		boss.update(TIME_PER_FRAME, inputs);
 	}
 
-	if (boss.isActive() && boss.collidesWith(player)) 
+	if (boss.isActive() && boss.collidesWith(player))
 	{
 		player.kill();
 	}
-	
+
 	timeSinceLastFire += TIME_PER_FRAME;
-	// !player.isAlive() || !boss.isAlive()
-	if (true) {
- 		if (hasScoreSceneBeenDisplayed) {
-			return SceneType::NONE;
-		}
-		scoreFinal.gameSceneResult.score = score;
-		hasScoreSceneBeenDisplayed = true;
-		return SceneType::SCORE_SCENE;
+	if (hasScoreSceneBeenDisplayed) {
+		return SceneType::NONE;
 	}
 
+	if (!player.isAlive() || !boss.isAlive()) {
+			scoreFinal.gameSceneResult.score = score;
+			hasScoreSceneBeenDisplayed = true;
+			return SceneType::SCORE_SCENE;
+	}
 	return retval;
 }
 
@@ -238,7 +237,7 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 	while (window.pollEvent(event))
 	{
 		//x sur la fenêtre
-		if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
+		if (event.type == sf::Event::Closed)
 		{
 			window.close();
 			retval = true;

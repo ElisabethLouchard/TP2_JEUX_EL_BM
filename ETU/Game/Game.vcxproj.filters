@@ -33,6 +33,7 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="WeaponBonus.cpp" />
     <ClCompile Include="ScoreContentManager.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorType.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="WeaponBonus.h" />
     <ClInclude Include="ScoreContentManager.h" />
+    <ClInclude Include="PlayerStats.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\extern\SFML\bin\openal32.dll" />

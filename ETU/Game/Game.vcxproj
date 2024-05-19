@@ -178,6 +178,7 @@
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="LifeBonus.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStats.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="SceneResult.h" />
@@ -223,6 +224,7 @@
     <ClCompile Include="random.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreContentManager.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="ScoreScene.cpp" />
     <ClCompile Include="ShipAnimation.cpp" />
     <ClCompile Include="stdafx.cpp">
