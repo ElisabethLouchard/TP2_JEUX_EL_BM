@@ -5,7 +5,8 @@
 #include "game.h"
 
 const float MOVE_SPEED_X = 900.0f;
-const float MOVE_SPEED_Y = 5.0f;
+const float MOVE_SPEED_Y = 20.0f;
+const unsigned int NB_MAX_HITS_TO_DIE = 10;
 
 EnemyBoss::EnemyBoss()
     : Enemy()
@@ -27,7 +28,7 @@ bool EnemyBoss::init(const ContentManager& contentManager)
     addAnimation<State::BOSS, EnemyBossIdleAnimation>(contentManager);
 
     healthBar.init(200, 20, currentHealth);
-    healthBar.setPosition(getPosition().x, getPosition().y - 10);
+    healthBar.setPosition(getPosition().x, getPosition().y - 80);
 
     return returnValue;
 }
@@ -35,18 +36,12 @@ bool EnemyBoss::init(const ContentManager& contentManager)
 bool EnemyBoss::update(float deltaT, const Inputs& inputs)
 {
     bool returnValue = Enemy::update(deltaT, inputs);
-    move(cos(moveAngle) * deltaT * MOVE_SPEED_X, sin(moveAngle) * deltaT * 5.0f);
+    move(cos(moveAngle) * deltaT * MOVE_SPEED_X, sin(moveAngle) * deltaT * MOVE_SPEED_Y);
     shouldFireBullets = false;
-    if (animations[State::BOSS]->getPercentage() == 0.5) {
+    if (animations[State::BOSS]->getPercentage() == 0.5 && isActive()) {
         shouldFireBullets = true;
     }
-
-    if (currentHealth == 0)
-    {
-        onDying();
-    }
-
-    healthBar.setPosition(getPosition().x, getPosition().y - 10);
+    healthBar.setPosition(getPosition().x, getPosition().y - 80);
     return returnValue;
 }
 
@@ -58,7 +53,9 @@ void EnemyBoss::draw(sf::RenderWindow& window) const
 
 void EnemyBoss::onHit()
 {
-    Enemy::onHit();
+     nbOfHit++;
+    if (nbOfHit >= NB_MAX_HITS_TO_DIE)
+        onDying();
     currentHealth--;
     healthBar.setCurrentValue(currentHealth);
 }

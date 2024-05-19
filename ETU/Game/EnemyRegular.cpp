@@ -32,7 +32,7 @@ bool EnemyRegular::update(float deltaT, const Inputs& inputs)
         setPosition(sf::Vector2f(getPosition().x, 0.0f));
     
     shouldFireBullets = false;
-    if (animations[State::STANDARD_ENEMY]->getPercentage() == 0.5) {
+    if (animations[State::STANDARD_ENEMY]->getPercentage() == 0.5 && getPosition().y > 0) {
         shouldFireBullets = true;
     }
     return returnValue;

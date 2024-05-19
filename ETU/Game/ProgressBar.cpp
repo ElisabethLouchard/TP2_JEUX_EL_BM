@@ -9,13 +9,13 @@ void ProgressBar::init(float width, float height, float maxValue) {
     this->maxValue = maxValue;
     this->currentValue = maxValue;
     bar.setSize(sf::Vector2f(width, height));
-    bar.setFillColor(sf::Color::Magenta); 
+    bar.setFillColor(sf::Color::Red);
+    bar.setOrigin(width / 2.0f, height / 2.0f);
 }
 
 void ProgressBar::setCurrentValue(float value) {
-    currentValue = value;
-    float ratio = currentValue / maxValue;
-    bar.setSize(sf::Vector2f(bar.getSize().x * ratio, bar.getSize().y));
+    float newWidth = bar.getSize().x * value / maxValue;
+    bar.setSize(sf::Vector2f(newWidth, bar.getSize().y));
 }
 
 float ProgressBar::getCurrentValue() const {
@@ -26,7 +26,8 @@ void ProgressBar::setPosition(float x, float y) {
     bar.setPosition(x, y);
 }
 
-void ProgressBar::draw(sf::RenderWindow& window) const { 
+void ProgressBar::draw(sf::RenderWindow& window) const 
+{ 
     window.draw(bar);
 }
 

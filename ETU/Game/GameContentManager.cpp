@@ -22,11 +22,6 @@ bool GameContentManager::loadContent()
 		return false;
 	}
 
-	if (!gameMusicSoundBuffer.loadFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
-	{
-		return false;
-	}
-
 	if (!enemyKilledSoundBuffer.loadFromFile("Assets\\SoundFX\\Level01\\enemyKilled.wav"))
 	{
 		return false;
@@ -75,11 +70,6 @@ const sf::Texture& GameContentManager::getShipAnimationTexture() const
 const sf::Font& GameContentManager::getFont() const
 {
 	return font;
-}
-
-const sf::SoundBuffer& GameContentManager::getGameMusicSoundBuffer() const
-{
-	return gameMusicSoundBuffer;
 }
 
 const sf::SoundBuffer& GameContentManager::getEnemyKilledSoundBuffer() const

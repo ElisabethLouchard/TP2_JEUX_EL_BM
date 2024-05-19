@@ -1,8 +1,11 @@
-﻿  EnemyBoss.cpp
-C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(29,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(63,31): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  GameScene.cpp
+﻿  Bullet.cpp
+  EnemyBossIdleAnimation.cpp
+  EnemyIdleAnimation.cpp
   game.cpp
+  GameContentManager.cpp
+  GameScene.cpp
+  Hud.cpp
+  ShipAnimation.cpp
   Génération de code en cours...
   Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
   C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf

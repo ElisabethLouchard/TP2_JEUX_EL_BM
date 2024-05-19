@@ -19,5 +19,6 @@ private:
     float moveAngle;
     ProgressBar healthBar;
     int currentHealth = 10;
+    int nbOfHit;
 };
 

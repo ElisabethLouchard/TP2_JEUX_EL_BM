@@ -13,11 +13,6 @@ bool TitleContentManager::loadContent()
 		return false;
 	}
 
-	if (!gameMusicSoundBuffer.loadFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
-	{
-		return false;
-	}
-
 	return true;
 }
 
@@ -29,11 +24,6 @@ const sf::Texture& TitleContentManager::getTitleTexture() const
 const sf::Font& TitleContentManager::getFont() const
 {
 	return font;
-}
-
-const sf::SoundBuffer& TitleContentManager::getGameMusicSoundBuffer() const
-{
-	return gameMusicSoundBuffer;
 }
 
 TitleContentManager::TitleContentManager()
