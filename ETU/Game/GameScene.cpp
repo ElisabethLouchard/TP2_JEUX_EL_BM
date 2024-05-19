@@ -12,10 +12,14 @@ const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
 const unsigned int GameScene::NB_ENEMIES = 20;
+
 GameScene::GameScene()
 	: Scene(SceneType::GAME_SCENE)
 	, timeSinceLastFire(0)
 	, timeSinceLastSpawn(0)
+	, nbOfEnemyDeaths(0)
+	, score(0)
+	, recoil(0)
 {
 
 }
@@ -50,6 +54,12 @@ SceneType GameScene::update()
 
 	for (Bullet& b : playerBullets)
 	{
+		if (b.collidesWith(boss))
+		{
+			boss.onHit();
+			b.deactivate();
+		}
+
 		if (b.update(TIME_PER_FRAME)) {
 			b.deactivate();
 		}
@@ -78,13 +88,8 @@ SceneType GameScene::update()
 				b.deactivate();
 				e.onHit();
 			}
-
-			if (b.collidesWith(boss))
-			{
-				boss.onHit();
-				b.deactivate();
-			}
 		}
+
 		if (player.collidesWith(e))
 		{
 			e.kill();

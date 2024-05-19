@@ -14,4 +14,5 @@ private:
     sf::RectangleShape bar;
     float maxValue;
     float currentValue;
+    float originalWidth;
 };

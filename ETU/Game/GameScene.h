@@ -14,8 +14,7 @@
 #include "EnemyBossIdleAnimation.h"
 #include <list>
 
-class GameScene :
-    public Scene, Subscriber
+class GameScene : public Scene, Subscriber
 {
 public:
     static const unsigned int MAX_RECOIL;
@@ -35,29 +34,40 @@ public:
     virtual bool handleEvents(sf::RenderWindow& window) override;
     unsigned int getScore() const;
     void notify(Event event, const void* data) override;
+
 private:
+    // Entrées utilisateur
     Inputs inputs;
+
+    // Entités du jeu
     Player player;
-    Hud hud;
-    void spawnBonus(const sf::Vector2f& enemyPosition);
-    template<typename GameObject>
-    GameObject& getAvailableObject(std::list<GameObject>& objects);
-    int recoil = 0;
-    void fireBullet(const GameObject& object, const bool isEnemy);
-    void initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy);
-    GameContentManager gameContentManager;
     EnemyBoss boss;
     std::list<EnemyRegular> enemies;
     std::list<LifeBonus> listLifeBonus;
     std::list<WeaponBonus> listWeaponBonus;
-    sf::Texture gameBackgroundTexture;
-    sf::Sprite gameBackground;
-    unsigned int score = 0;
-    bool hasTransition = false;
     std::list<Bullet> playerBullets;
     std::list<Bullet> enemyBullets;
+
+    // Interface utilisateur
+    Hud hud;
+
+    // Ressources graphiques
+    GameContentManager gameContentManager;
+    sf::Texture gameBackgroundTexture;
+    sf::Sprite gameBackground;
+
+    // Variables de jeu
+    unsigned int score;
+    int recoil;
     float timeSinceLastFire;
     float timeSinceLastSpawn;
     int nbOfEnemyDeaths;
-};
+    bool hasTransition = false;
 
+    // Fonctions utilitaires
+    void spawnBonus(const sf::Vector2f& enemyPosition);
+    template<typename GameObject>
+    GameObject& getAvailableObject(std::list<GameObject>& objects);
+    void fireBullet(const GameObject& object, const bool isEnemy);
+    void initializeBulletPool(std::list<Bullet>& bulletPool, const sf::Texture& texture, const bool isEnemy);
+};

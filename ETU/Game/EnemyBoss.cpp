@@ -6,17 +6,19 @@
 
 const float MOVE_SPEED_X = 900.0f;
 const float MOVE_SPEED_Y = 20.0f;
-const unsigned int NB_MAX_HITS_TO_DIE = 10;
+const unsigned int NB_INITIAL_LIVES = 50;
 
 EnemyBoss::EnemyBoss()
     : Enemy()
     , moveAngle(0)
+    , currentHealth(NB_INITIAL_LIVES)
 {
 }
 
 EnemyBoss::EnemyBoss(const EnemyBoss& src)
     : Enemy(src)
     , moveAngle(src.moveAngle)
+    , currentHealth(src.currentHealth)
 {
 }
 
@@ -42,6 +44,10 @@ bool EnemyBoss::update(float deltaT, const Inputs& inputs)
         shouldFireBullets = true;
     }
 
+    if (currentHealth == 0) {
+        deactivate();
+    }
+
     healthBar.setPosition(getPosition().x, getPosition().y - 80);
     return returnValue;
 }
@@ -54,16 +60,10 @@ void EnemyBoss::draw(sf::RenderWindow& window) const
 
 void EnemyBoss::onHit()
 {
-     nbOfHit++;
-    if (nbOfHit >= NB_MAX_HITS_TO_DIE)
-        kill();
-    currentHealth--;
-    healthBar.setCurrentValue(currentHealth);
-}
-
-void EnemyBoss::kill()
-{
-    Enemy::kill();
+    if (currentHealth > 0) {
+        currentHealth--;
+        healthBar.setCurrentValue(currentHealth);
+    }
 }
 
 void EnemyBoss::activate() 
