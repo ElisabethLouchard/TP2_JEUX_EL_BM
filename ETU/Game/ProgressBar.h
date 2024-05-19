@@ -7,8 +7,8 @@ public:
     void init(float width, float height, float maxValue);
     void setCurrentValue(float value);
     float getCurrentValue() const;
-   // virtual void setPosition(float x, float y) override;
-    //virtual void draw(sf::RenderWindow& window) const override;
+    void setPosition(float x, float y);
+    virtual void draw(sf::RenderWindow& window) const override;
 
 private:
     sf::RectangleShape bar;

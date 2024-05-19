@@ -78,6 +78,12 @@ SceneType GameScene::update()
 				b.deactivate();
 				e.onHit();
 			}
+
+			if (b.collidesWith(boss))
+			{
+				boss.onHit();
+				b.deactivate();
+			}
 		}
 		if (player.collidesWith(e))
 		{

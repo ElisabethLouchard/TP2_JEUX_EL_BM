@@ -43,6 +43,10 @@ bool Enemy::init(const ContentManager& contentManager)
 
 bool Enemy::update(float deltaT, const Inputs& inputs)
 {
+    if (getPosition().y < 0)
+    {
+        shouldFireBullets = false;
+    }
     return AnimatedGameObject::update(deltaT, inputs);
 }
 

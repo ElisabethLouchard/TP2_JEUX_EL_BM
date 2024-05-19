@@ -46,8 +46,11 @@ bool TitleScene::init()
     instructions.setCharacterSize(30);
     instructions.setPosition(Game::GAME_WIDTH / 2.0f - instructions.getGlobalBounds().width / 2.0f,
         Game::GAME_HEIGHT / 2 + (menuImage.getGlobalBounds().height / 2.0f) + 20);
-    //gameMusic.setBuffer(titleContentManager.getGameMusicSoundBuffer());
-    //gameMusic.play();
+    if (!gameMusic.openFromFile("Assets\\Music\\Title\\SkyFire (Title Screen).ogg"))
+    {
+        return false;
+    }
+    gameMusic.play();
   return true;
 }
 

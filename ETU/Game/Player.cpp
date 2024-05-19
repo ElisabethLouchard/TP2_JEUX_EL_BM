@@ -8,13 +8,14 @@
 
 const float Player::SPEED = 2.0f;
 const unsigned int Player::NB_INITIAL_LIVES = 3000;
-const float Player::PLAYER_INVINCIBILITY_DURATION = 3.0f;
+const float Player::PLAYER_INVINCIBILITY_DURATION = 1.0f;
 const sf::Color Player::RESET_COLOR = sf::Color::White;
 
 Player::Player()
     : nbOfLives(NB_INITIAL_LIVES)
     , isInvincible(false)
     , nbOfBonusPts(0)
+    , invincibilityTimer(0)
 {
 
 }

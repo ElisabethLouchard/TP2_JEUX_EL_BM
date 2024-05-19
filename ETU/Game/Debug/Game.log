@@ -1,29 +1,26 @@
-﻿  Player.cpp
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         with
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         [
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:             T=float
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(25,73): warning C4244:         ]
-  (compiler le fichier source '/Player.cpp')
-  
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Player.cpp(122,23): warning C4244: '=' : conversion de 'float' en 'sf::Uint8', perte possible de données
-  (compiler le fichier source '/Player.cpp')
-  
-  Game.vcxproj -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Game.lib
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\bomb.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\bomb.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\bossSpawning.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\bossSpawning.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\enemyGun.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\enemyGun.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\enemyKilled.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\enemyKilled.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\gunBonus.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\gunBonus.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\healthBonus.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\healthBonus.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\iceball.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\iceball.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\info.txt -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\info.txt
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\SoundFX\Level01\playerGun.wav -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\SoundFX\Level01\playerGun.wav
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Sprites\Level01\SpaceBackground.png -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Sprites\Level01\SpaceBackground.png
-  C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Sprites\Title\Title.png -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Sprites\Title\Title.png
+﻿  EnemyBoss.cpp
+C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(30,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Programmation_de_jeu\Tp2\ETU\Game\EnemyBoss.cpp(61,31): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  GameScene.cpp
+  Hud.cpp
+  ProgressBar.cpp
+  game.cpp
+  Génération de code en cours...
+  Game.vcxproj -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Game.lib
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Music\Title\SkyFire (Title Screen).ogg -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Music\Title\SkyFire (Title Screen).ogg
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\bomb.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\bomb.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\bossSpawning.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\bossSpawning.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\enemyGun.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\enemyGun.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\enemyKilled.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\enemyKilled.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\gunBonus.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\gunBonus.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\healthBonus.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\healthBonus.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\iceball.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\iceball.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\info.txt -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\info.txt
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\SoundFX\Level01\playerGun.wav -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\SoundFX\Level01\playerGun.wav
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Bosses.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - Miscellaneous.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\NES - The Guardian Legend - The Guardian Alyssa.bmp
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Level01\SpaceBackground.png -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Level01\SpaceBackground.png
+  C:\Programmation_de_jeu\Tp2\ETU\Game\Assets\Sprites\Title\Title.png -> C:\Programmation_de_jeu\Tp2\ETU\Debug\Assets\Sprites\Title\Title.png
   16 fichier(s) copiÚ(s)
