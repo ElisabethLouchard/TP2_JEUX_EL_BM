@@ -52,7 +52,7 @@ bool EnemyBoss::update(float deltaT, const Inputs& inputs)
     return returnValue;
 }
 
-void EnemyBoss::draw(sf::RenderWindow& window) const 
+void EnemyBoss::draw(sf::RenderWindow& window) const
 {
     Enemy::draw(window);
     healthBar.draw(window);
@@ -66,7 +66,7 @@ void EnemyBoss::onHit()
     }
 }
 
-void EnemyBoss::activate() 
+void EnemyBoss::activate()
 {
     Enemy::activate();
     healthBar.activate();

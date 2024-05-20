@@ -21,4 +21,3 @@ private:
 protected:
 	bool shouldFireBullets;
 };
-

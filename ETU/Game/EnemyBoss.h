@@ -20,4 +20,3 @@ private:
     ProgressBar healthBar;
     int currentHealth;
 };
-

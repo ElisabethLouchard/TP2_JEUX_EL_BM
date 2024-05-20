@@ -5,14 +5,14 @@
 class EnemyRegular : public Enemy
 {
 public:
+    static const float MOVE_SPEED_Y;
+
     EnemyRegular();
     EnemyRegular(const EnemyRegular& src);
     bool init(const ContentManager& contentManager) override;
     bool update(float deltaT, const Inputs& inputs) override;
-    void onHit() override;
-    void kill() override;
 private:
-    bool isDead= false;
+    bool isDead = false;
     bool isExploding = false;
     int nbOfHit = 0;
     sf::Sound enemyKilledSound;

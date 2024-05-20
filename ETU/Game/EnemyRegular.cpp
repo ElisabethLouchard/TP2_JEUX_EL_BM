@@ -4,6 +4,8 @@
 #include "EnemyIdleAnimation.h"
 #include "game.h"
 
+const float EnemyRegular::MOVE_SPEED_Y = 5.0f;
+
 EnemyRegular::EnemyRegular()
     : Enemy()
 {
@@ -25,24 +27,15 @@ bool EnemyRegular::update(float deltaT, const Inputs& inputs)
 {
     bool returnValue = Enemy::update(deltaT, inputs);
 
-    move(sf::Vector2f(0, 5));
+    move(sf::Vector2f(0, MOVE_SPEED_Y));
 
     if (getPosition().y > Game::GAME_HEIGHT)
         setPosition(sf::Vector2f(getPosition().x, 0.0f));
     
     shouldFireBullets = false;
-    if (animations[State::STANDARD_ENEMY]->getPercentage() == 0.5 && getPosition().y > 0) {
+    // 0.5f = 50% = À la moitié de l'animation
+    if (animations[State::STANDARD_ENEMY]->getPercentage() == 0.5f && getPosition().y > 0) {
         shouldFireBullets = true;
     }
     return returnValue;
-}
-
-void EnemyRegular::onHit()
-{
-    Enemy::onHit();
-}
-
-void EnemyRegular::kill()
-{
-    Enemy::kill();
 }

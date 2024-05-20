@@ -31,6 +31,9 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
+	Publisher::removeSubscriber(*this, Event::ENEMY_KILLED);
+	Publisher::removeSubscriber(*this, Event::HEALTH_PICKED_UP);
+	Publisher::removeSubscriber(*this, Event::GUN_PICKED_UP);
 }
 
 SceneType GameScene::update()
@@ -151,14 +154,12 @@ SceneType GameScene::update()
 	timeSinceLastFire += TIME_PER_FRAME;
 
 	if (hasScoreSceneBeenDisplayed) {
-		uninit();
 		return SceneType::NONE;
 	}
 
 	if (!player.isAlive() || !boss.isAlive()) {
 			scoreFinal.gameSceneResult.score = score;
 			hasScoreSceneBeenDisplayed = true;
-			uninit();
 			return SceneType::SCORE_SCENE;
 	}
 	return retval;
@@ -240,9 +241,7 @@ bool GameScene::init()
 
 bool GameScene::uninit()
 {
-	Publisher::removeSubscriber(*this, Event::ENEMY_KILLED);
-	Publisher::removeSubscriber(*this, Event::HEALTH_PICKED_UP);
-	Publisher::removeSubscriber(*this, Event::GUN_PICKED_UP);
+
 	return true;
 }
 
