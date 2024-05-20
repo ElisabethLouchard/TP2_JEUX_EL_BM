@@ -2,3 +2,7 @@
 /ETU/extern/
 /ETU/Debug/
 /ETU/Game/Debug/
+/ETU/Release/
+/ETU/Game/Release/
+/ETU/Launcher/Debug
+/ETU/Launcher/Release/
