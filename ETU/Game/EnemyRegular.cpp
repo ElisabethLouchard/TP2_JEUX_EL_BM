@@ -18,7 +18,6 @@ bool EnemyRegular::init(const ContentManager& contentManager)
 {
     bool returnValue = Enemy::init(contentManager);
     setScale(1, 0.5);
-    
     return returnValue;
 }
 

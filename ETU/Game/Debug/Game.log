@@ -1,10 +1,5 @@
-﻿  GameScene.cpp
-  Hud.cpp
-  ScoreScene.cpp
-C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\ScoreScene.cpp(177,23): warning C4018: '<' : incompatibilité signed/unsigned
-  (compiler le fichier source '/ScoreScene.cpp')
-  
-  game.cpp
+﻿  EnemyRegular.cpp
+  GameScene.cpp
   Génération de code en cours...
   Game.vcxproj -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Game.lib
   C:\Users\morel\Desktop\TP_2_JEUX\ETU\Game\Assets\Fonts\Level01\emulogic.ttf -> C:\Users\morel\Desktop\TP_2_JEUX\ETU\Debug\Assets\Fonts\Level01\emulogic.ttf

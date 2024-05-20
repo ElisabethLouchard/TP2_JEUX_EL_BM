@@ -11,7 +11,7 @@ const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
-const unsigned int GameScene::NB_ENEMIES = 20;
+const unsigned int GameScene::NB_ENEMIES = 21;
 const unsigned int GameScene::NB_BONUSES = 10;
 const unsigned int GameScene::SCORE_GAIN_PTS = 50;
 
@@ -31,15 +31,17 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-
 }
 
 SceneType GameScene::update()
 {
+	SceneType retval = getSceneType();
+
 	static int cptScrollBackground = 0;
 	gameBackground.setTextureRect(sf::IntRect(0, (int)(0.5f * cptScrollBackground--), Game::GAME_WIDTH, Game::GAME_HEIGHT));
-	SceneType retval = getSceneType();
+	
 	recoil = std::max(0, recoil - 1);
+	
 	player.update(TIME_PER_FRAME, inputs);
 
 	if (boss.getShouldFireBullet())
@@ -81,8 +83,6 @@ SceneType GameScene::update()
 	{
 		fireBullet(player, false);
 	}
-
-	timeSinceLastFire += TIME_PER_FRAME;
 
 	for (EnemyRegular& e : enemies)
 	{
@@ -149,13 +149,16 @@ SceneType GameScene::update()
 	}
 
 	timeSinceLastFire += TIME_PER_FRAME;
+
 	if (hasScoreSceneBeenDisplayed) {
+		uninit();
 		return SceneType::NONE;
 	}
 
 	if (!player.isAlive() || !boss.isAlive()) {
 			scoreFinal.gameSceneResult.score = score;
 			hasScoreSceneBeenDisplayed = true;
+			uninit();
 			return SceneType::SCORE_SCENE;
 	}
 	return retval;
@@ -176,29 +179,36 @@ void GameScene::draw(sf::RenderWindow& window) const
 	for (const EnemyRegular& e : enemies)
 		e.draw(window);
 	boss.draw(window);
-
 	hud.draw(window);
 }
 
 bool GameScene::init()
 {
-	Publisher::addSubscriber(*this, Event::ENEMY_KILLED);
-	Publisher::addSubscriber(*this, Event::HEALTH_PICKED_UP);
-	Publisher::addSubscriber(*this, Event::GUN_PICKED_UP);
-
 	inputs.reset();
 	if (gameContentManager.loadContent() == false)
 	{
 		return false;
 	}
+
+	Publisher::addSubscriber(*this, Event::ENEMY_KILLED);
+	Publisher::addSubscriber(*this, Event::HEALTH_PICKED_UP);
+	Publisher::addSubscriber(*this, Event::GUN_PICKED_UP);
+
 	gameBackground.setTexture(gameContentManager.getBackgroundTexture());
 	hud.initialize(gameContentManager);
-	int random = 0;
+
+	srand(static_cast<unsigned int>(time(nullptr)));
+
 	for (int i = 0; i < NB_ENEMIES; i++)
 	{
 		EnemyRegular enemy;
 		enemy.init(gameContentManager);
-		enemy.setPosition(sf::Vector2f(i * (float)Game::GAME_WIDTH / 20.0f, -50.0f * (float)(rand() % 100)));
+
+		// Générer les positions aléatoires avec rand()
+		float posX = static_cast<float>(rand() % Game::GAME_WIDTH);
+		float posY = -50.0f * static_cast<float>(rand() % 100);
+
+		enemy.setPosition(sf::Vector2f(posX, posY));
 		enemies.push_back(enemy);
 	}
 
