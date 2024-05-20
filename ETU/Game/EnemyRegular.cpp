@@ -3,6 +3,7 @@
 #include "ContentManager.h"
 #include "EnemyIdleAnimation.h"
 #include "game.h"
+#include "Publisher.h"
 
 EnemyRegular::EnemyRegular()
     : Enemy()
@@ -35,14 +36,4 @@ bool EnemyRegular::update(float deltaT, const Inputs& inputs)
         shouldFireBullets = true;
     }
     return returnValue;
-}
-
-void EnemyRegular::onHit()
-{
-    Enemy::onHit();
-}
-
-void EnemyRegular::kill()
-{
-    Enemy::kill();
 }

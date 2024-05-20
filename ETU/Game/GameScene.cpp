@@ -5,15 +5,18 @@
 #include "random.h"
 #include "Subscriber.h"
 #include "Publisher.h"
+#include <iostream>
 
 const float GameScene::TIME_BETWEEN_FIRE = 0.5f;
-const float GameScene::BONUS_SPAWN_CHANCE = 0.5f;
+const float GameScene::BONUS_SPAWN_CHANCE = 0.4f;
 const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
 const unsigned int GameScene::NB_ENEMIES = 21;
 const unsigned int GameScene::NB_BONUSES = 10;
 const unsigned int GameScene::SCORE_GAIN_PTS = 50;
+const unsigned int GameScene::REGULAR_ENEMY_DAMAGE = 10;
+const unsigned int GameScene::BOSS_ENEMY_DAMAGE = 100;
 
 SceneResult GameScene::scoreFinal;
 
@@ -98,7 +101,7 @@ SceneType GameScene::update()
 		if (player.collidesWith(e))
 		{
 			e.kill();
-			player.reduceLifePts();
+			player.reduceLifePts(REGULAR_ENEMY_DAMAGE);
 		}
 	}
 
@@ -107,7 +110,13 @@ SceneType GameScene::update()
 		if (b.collidesWith(player))
 		{
 			player.reduceBonusPts();
-			player.reduceLifePts();
+			if (nbOfEnemyDeaths == NB_ENEMIES) {
+				player.reduceLifePts(BOSS_ENEMY_DAMAGE);
+			}
+			else {
+				player.reduceLifePts(REGULAR_ENEMY_DAMAGE);
+			}
+			
 		}
 	}
 
@@ -151,14 +160,12 @@ SceneType GameScene::update()
 	timeSinceLastFire += TIME_PER_FRAME;
 
 	if (hasScoreSceneBeenDisplayed) {
-		uninit();
 		return SceneType::NONE;
 	}
 
 	if (!player.isAlive() || !boss.isAlive()) {
 			scoreFinal.gameSceneResult.score = score;
 			hasScoreSceneBeenDisplayed = true;
-			uninit();
 			return SceneType::SCORE_SCENE;
 	}
 	return retval;
@@ -240,9 +247,6 @@ bool GameScene::init()
 
 bool GameScene::uninit()
 {
-	Publisher::removeSubscriber(*this, Event::ENEMY_KILLED);
-	Publisher::removeSubscriber(*this, Event::HEALTH_PICKED_UP);
-	Publisher::removeSubscriber(*this, Event::GUN_PICKED_UP);
 	return true;
 }
 
@@ -254,17 +258,30 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 	while (window.pollEvent(event))
 	{
 		//x sur la fenêtre
-		if (event.type == sf::Event::Closed)
+		if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
 		{
 			window.close();
 			retval = true;
 		}
 	}
-	inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) ? 3.0f : 0.0f;
-	inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) ? -3.0f : 0.0f;
-	inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ? 3.0f : 0.0f;
-	inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) ? -3.0f : 0.0f;
-	inputs.fireBullet = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+
+	if (sf::Joystick::isConnected(0)) {
+		float x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+		float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+
+		inputs.moveFactorX -= (std::abs(x) > 15) ? x / 100.0f * 3.0f : 0.0f;
+		inputs.moveFactorY -= (std::abs(y) > 15) ? y / 100.0f * 3.0f : 0.0f;
+
+		inputs.fireBullet = sf::Joystick::isButtonPressed(0, 0) && (recoil == 0);
+	}
+	else
+	{
+		inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) ? 3.0f : 0.0f;
+		inputs.moveFactorY += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) ? -3.0f : 0.0f;
+		inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ? 3.0f : 0.0f;
+		inputs.moveFactorX += sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) ? -3.0f : 0.0f;
+		inputs.fireBullet = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+	}
 	return retval;
 }
 
@@ -292,9 +309,9 @@ void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
 	nbOfEnemyDeaths++;
 
 	Random randomGenerator;
-
+	srand(static_cast<unsigned int>(time(nullptr)));
 	double randomValue = randomGenerator.nextDouble();
-
+	srand(static_cast<unsigned int>(time(nullptr)));
 	double randomBonus = randomGenerator.nextDouble();
 
 	if (randomValue <= BONUS_SPAWN_CHANCE)

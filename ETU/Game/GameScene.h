@@ -25,6 +25,8 @@ public:
     static const unsigned int NB_ENEMIES;
     static const unsigned int NB_BONUSES;
     static const unsigned int SCORE_GAIN_PTS;
+    static const unsigned int REGULAR_ENEMY_DAMAGE;
+    static const unsigned int BOSS_ENEMY_DAMAGE;
 
     static SceneResult scoreFinal;
 

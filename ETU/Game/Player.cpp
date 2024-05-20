@@ -7,9 +7,12 @@
 #include "Publisher.h"
 
 const float Player::SPEED = 2.0f;
-const unsigned int Player::NB_INITIAL_LIVES = 3000;
+const unsigned int Player::NB_INITIAL_LIVES = 1500;
 const float Player::PLAYER_INVINCIBILITY_DURATION = 1.0f;
 const sf::Color Player::RESET_COLOR = sf::Color::White;
+const unsigned int Player::HEALTH_BONUS_GAIN = 20;
+const unsigned int Player::BONUS_PTS_GAIN = 100;
+const unsigned int Player::BONUS_PTS_LOST = 10;
 
 Player::Player()
     : nbOfLives(NB_INITIAL_LIVES)
@@ -54,12 +57,17 @@ void Player::kill()
     deactivate();
 }
 
-void Player::reduceLifePts()
+void Player::reduceLifePts(const unsigned int damage)
 {
-    if (!getHasBonus() && nbOfLives > 0 && !isInvincible) {
-        nbOfLives--;
-        isInvincible = true;
-        invincibilityTimer = 0;
+    if (!getHasBonus() && !isInvincible) {
+        if (nbOfLives <= damage) {
+            kill();
+        }
+        else {
+            nbOfLives -= damage;
+            isInvincible = true;
+            invincibilityTimer = 0;
+        }
         Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
     }
 }
@@ -76,7 +84,7 @@ bool Player::getHasBonus() const
 
 void Player::pickUpHealthBonus()
 {
-    nbOfLives+=100;
+    nbOfLives+=HEALTH_BONUS_GAIN;
     Publisher::notifySubscribers(Event::HEALTH_PICKED_UP, this);
     Publisher::notifySubscribers(Event::HEALTH_PTS_UPDATED, this);
 }
@@ -90,15 +98,15 @@ void Player::pickUpGunBonus()
 
 void Player::reduceBonusPts()
 {
-    if (nbOfBonusPts >= 10 && !isInvincible) {
-        nbOfBonusPts -= 10;
+    if (nbOfBonusPts >= BONUS_PTS_LOST && !isInvincible) {
+        nbOfBonusPts -= BONUS_PTS_LOST;
         Publisher::notifySubscribers(Event::GUN_PTS_UPDATED, this);
     }
 }
 
 void Player::activateBonus()
 {
-    nbOfBonusPts = 100;
+    nbOfBonusPts = BONUS_PTS_GAIN;
 }
 
 unsigned int Player::getNbOfLives() const

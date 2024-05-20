@@ -16,9 +16,6 @@ Hud::Hud()
 
 Hud::~Hud()
 {
-	Publisher::removeSubscriber(*this, Event::GUN_PTS_UPDATED);
-	Publisher::removeSubscriber(*this, Event::HEALTH_PTS_UPDATED);
-	Publisher::removeSubscriber(*this, Event::SCORE_UPDATED);
 }
 
 void Hud::initialize(const GameContentManager& gameContentManager)
