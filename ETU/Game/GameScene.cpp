@@ -12,6 +12,9 @@ const float GameScene::TIME_PER_FRAME = 1.0f / (float)Game::FRAME_RATE;
 const unsigned int GameScene::NB_BULLETS = 50;
 const unsigned int GameScene::MAX_RECOIL = 15; // 0.3s
 const unsigned int GameScene::NB_ENEMIES = 20;
+const unsigned int GameScene::NB_BONUSES = 10;
+const unsigned int GameScene::SCORE_GAIN_PTS = 50;
+
 SceneResult GameScene::scoreFinal;
 
 GameScene::GameScene()
@@ -21,6 +24,7 @@ GameScene::GameScene()
 	, nbOfEnemyDeaths(0)
 	, score(0)
 	, recoil(0)
+	, hasScoreSceneBeenDisplayed(false)
 {
 
 }
@@ -200,7 +204,7 @@ bool GameScene::init()
 
 	boss.init(gameContentManager);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < NB_BONUSES; i++)
 	{
 		LifeBonus lifeBonus;
 		const sf::Vector2f& initialPosition = sf::Vector2f(0, 0);
@@ -208,7 +212,7 @@ bool GameScene::init()
 		listLifeBonus.push_back(lifeBonus);
 	}
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < NB_BONUSES; i++)
 	{
 		WeaponBonus weaponBonus;
 		const sf::Vector2f& initialPosition = sf::Vector2f(0, 0);
@@ -226,6 +230,9 @@ bool GameScene::init()
 
 bool GameScene::uninit()
 {
+	Publisher::removeSubscriber(*this, Event::ENEMY_KILLED);
+	Publisher::removeSubscriber(*this, Event::HEALTH_PICKED_UP);
+	Publisher::removeSubscriber(*this, Event::GUN_PICKED_UP);
 	return true;
 }
 
@@ -251,28 +258,23 @@ bool GameScene::handleEvents(sf::RenderWindow& window)
 	return retval;
 }
 
-void GameScene::fireBullet(const GameObject& object, bool isEnemy)
+void GameScene::fireBullet(const GameObject& object, const bool isEnemy)
 {
-	if (isEnemy) {
-		Bullet& b1 = getAvailableObject(enemyBullets);
-		Bullet& b2 = getAvailableObject(enemyBullets);
-		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
-		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
-		b1.playSound();
+	Bullet& b1 = getAvailableObject(isEnemy ? enemyBullets : playerBullets);
+	Bullet& b2 = getAvailableObject(isEnemy ? enemyBullets : playerBullets);
+
+	sf::Vector2f bulletOffset = sf::Vector2f(object.getGlobalBounds().width / 3, 0.f);
+	b1.setPosition(object.getPosition() - bulletOffset);
+	b2.setPosition(object.getPosition() + bulletOffset);
+	b1.playSound();
+
+	if (!isEnemy && player.getHasBonus()) {
+		Bullet& b3 = getAvailableObject(playerBullets);
+		b3.setPosition(object.getPosition());
 	}
-	else {
-		Bullet& b1 = getAvailableObject(playerBullets);
-		Bullet& b2 = getAvailableObject(playerBullets);
-		b1.setPosition(sf::Vector2f(object.getPosition().x - object.getGlobalBounds().width / 3, object.getPosition().y));
-		b2.setPosition(sf::Vector2f(object.getPosition().x + object.getGlobalBounds().width / 3, object.getPosition().y));
-		b1.playSound();
-		if (player.getHasBonus()) {
-			Bullet& b3 = getAvailableObject(playerBullets);
-			b3.setPosition(object.getPosition());
-		}
-		inputs.fireBullet = false;
-		recoil = MAX_RECOIL;
-	}
+
+	inputs.fireBullet = false;
+	recoil = MAX_RECOIL;
 }
 
 void GameScene::spawnBonus(const sf::Vector2f& enemyPosition)
@@ -325,20 +327,20 @@ void GameScene::notify(Event event, const void* data)
 		break;
 	case Event::HEALTH_PICKED_UP:
 	{
-		score += 50;
+		score += SCORE_GAIN_PTS;
 		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
 		break;
 	}
 	case Event::GUN_PICKED_UP:
 	{
-		score += 50;
+		score += SCORE_GAIN_PTS;
 		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
 		break;
 	}
 	case Event::ENEMY_KILLED:
 	{
 		const Enemy* enemy = static_cast<const Enemy*>(data);
-		score += 50;
+		score += SCORE_GAIN_PTS;
 		spawnBonus(enemy->getPosition());
 		Publisher::notifySubscribers(Event::SCORE_UPDATED, this);
 		break;

@@ -6,6 +6,7 @@ class Hud : public Subscriber
 {
 public:
 	Hud();
+	~Hud();
 	void draw(sf::RenderWindow& window)  const;
 	void initialize(const GameContentManager& gameContentManager);
 	void notify(Event event, const void* data) override;

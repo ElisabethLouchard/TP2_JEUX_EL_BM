@@ -23,6 +23,9 @@ public:
     static const float TIME_PER_FRAME;
     static const unsigned int NB_BULLETS;
     static const unsigned int NB_ENEMIES;
+    static const unsigned int NB_BONUSES;
+    static const unsigned int SCORE_GAIN_PTS;
+
     static SceneResult scoreFinal;
 
     // Héritées via Scene
@@ -63,9 +66,7 @@ private:
     float timeSinceLastFire;
     float timeSinceLastSpawn;
     int nbOfEnemyDeaths;
-    bool hasTransition = false;
-
-    bool hasScoreSceneBeenDisplayed = false;
+    bool hasScoreSceneBeenDisplayed;
 
     // Fonctions utilitaires
     void spawnBonus(const sf::Vector2f& enemyPosition);
